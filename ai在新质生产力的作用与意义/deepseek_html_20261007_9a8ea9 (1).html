@@ -1,0 +1,4752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人工智能 ——新质生产力的核心</title>
+  <style>
+    /* 全局简约重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f2f6fb;
+      color: #1e2b3c;
+      line-height: 1.55;
+      padding: 2rem 1.5rem 2.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .main {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* 顶部标题 + 二级菜单 */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.8rem;
+      margin-bottom: 1.9rem;
+      position: relative;
+      padding-left: 0.75rem;
+    }
+
+    .page-header-text { min-width: 0; }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.35rem;
+      bottom: 0.35rem;
+      width: 4px;
+      background: linear-gradient(to bottom, #2e7d9e, #7fb4d0);
+      border-radius: 4px;
+    }
+
+    .page-header h1 {
+      font-size: 2.6rem;
+      font-weight: 540;
+      letter-spacing: -0.02em;
+      color: #0a1e2e;
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
+    }
+
+    .page-header .subhead {
+      font-size: 1rem;
+      color: #4c6e88;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .page-header .subhead::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: #a0bed6;
+    }
+
+    /* 毛玻璃定义卡片 */
+    .glass-definition {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 32px;
+      padding: 2rem 2.4rem;
+      margin-bottom: 2.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 12px 36px -8px rgba(0, 40, 70, 0.12), 0 0 0 1px rgba(210, 230, 245, 0.5) inset;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-definition::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #2e7d9e, #b0d0e5, #2e7d9e);
+      opacity: 0.5;
+    }
+
+    .glass-definition .def-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #2c6280;
+      font-weight: 560;
+      margin-bottom: 0.7rem;
+      display: inline-block;
+      background: rgba(46, 125, 158, 0.1);
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+    }
+
+    .glass-definition h2 {
+      font-size: 2rem;
+      font-weight: 540;
+      color: #0a1e2e;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .glass-definition .def-text {
+      font-size: 1rem;
+      color: #1d3e52;
+      line-height: 1.75;
+    }
+
+    .glass-definition .def-text .highlight {
+      background: rgba(46, 125, 158, 0.12);
+      padding: 0.1rem 0.5rem;
+      border-radius: 20px;
+      color: #0f5a7a;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .glass-definition .def-text .ai-highlight {
+      background: rgba(124, 58, 237, 0.1);
+      padding: 0.1rem 0.5rem;
+      border-radius: 20px;
+      color: #6d28d9;
+      font-weight: 560;
+      white-space: nowrap;
+    }
+
+    .glass-definition .def-text p + p {
+      margin-top: 1rem;
+    }
+
+    /* AI 核心引擎强调条 */
+    .ai-engine-banner {
+      margin-top: 1.4rem;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(46, 125, 158, 0.08));
+      border-radius: 18px;
+      padding: 1.1rem 1.4rem;
+      border: 1px solid rgba(124, 58, 237, 0.18);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+    }
+
+    .ai-engine-banner .ai-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .ai-engine-banner p {
+      font-size: 0.95rem;
+      color: #3b2a6b;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .ai-engine-banner strong {
+      color: #5b21b6;
+      font-weight: 620;
+    }
+
+    /* 章节通用标题 */
+    .section-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin: 2.4rem 0 1.2rem 0;
+      padding: 0 0.2rem;
+    }
+
+    .section-label h2 {
+      font-size: 1.55rem;
+      font-weight: 520;
+      color: #0f2a3b;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label h2::before {
+      content: '◆';
+      font-size: 0.8rem;
+      color: #2e7d9e;
+      opacity: 0.8;
+    }
+
+    .section-label .hint {
+      font-size: 0.78rem;
+      color: #426f8e;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 0.25rem 1.2rem;
+      border-radius: 40px;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(180, 210, 235, 0.5);
+      font-weight: 430;
+      letter-spacing: 0.3px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .section-label.first-section {
+      margin-top: 0.5rem;
+    }
+
+    /* ===== 拖拽轨道 ===== */
+    .single-card-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-overflow-scrolling: touch;
+      background: transparent;
+      padding: 1rem 0 1.5rem;
+    }
+
+    .single-card-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .single-card-track:active {
+      cursor: grabbing;
+    }
+
+    #trackDef .single-card-item {
+      flex: 0 0 65%;
+      scroll-snap-align: center;
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+
+    #trackFeature .single-card-item,
+    #trackCases .single-card-item {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      padding: 0 0.4rem;
+      box-sizing: border-box;
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* 卡片样式 */
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.8rem 2.2rem 2rem;
+      box-shadow: 0 12px 32px -10px rgba(0, 30, 50, 0.1), 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e2ecf5;
+      transition: box-shadow 0.25s;
+      pointer-events: auto;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+    }
+
+    .card:hover {
+      box-shadow: 0 20px 40px -12px rgba(0, 60, 100, 0.18), 0 6px 16px rgba(0, 0, 0, 0.03);
+    }
+
+    .card.ai-card {
+      border-top: 3px solid #8b5cf6;
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 22px;
+      overflow: hidden;
+      margin-bottom: 1.4rem;
+      background: #e8f0f8;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .card:hover .card-image img {
+      transform: scale(1.03);
+    }
+
+    .card-image .img-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 20, 40, 0.7));
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 1.8rem 0.9rem 0.7rem;
+      letter-spacing: 0.2px;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .card-icon {
+      font-size: 2.4rem;
+      margin-bottom: 0.7rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .card h3 {
+      font-size: 1.7rem;
+      font-weight: 530;
+      margin-bottom: 0.8rem;
+      color: #0a2a3b;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      flex-shrink: 0;
+    }
+
+    .card p {
+      font-size: 0.97rem;
+      color: #3d5e76;
+      line-height: 1.65;
+      flex: 0 1 auto;
+    }
+
+    .card p + p {
+      margin-top: 0.7rem;
+    }
+
+    .card strong {
+      color: #0f3348;
+      font-weight: 600;
+    }
+
+    .card .tag {
+      display: inline-block;
+      background: #e3eff9;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 520;
+      padding: 0.35rem 1.2rem;
+      color: #135a7a;
+      margin-top: 1.6rem;
+      align-self: flex-start;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(46, 125, 158, 0.15);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+      flex-shrink: 0;
+    }
+
+    .card .tag.ai-tag {
+      background: #ede9fe;
+      color: #5b21b6;
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+
+    .card ul {
+      list-style: none;
+      margin: 0.6rem 0 0 0;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .card ul li {
+      font-size: 0.92rem;
+      color: #3d5e76;
+      line-height: 1.65;
+      padding-left: 1.6rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+
+    .card ul li::before {
+      content: "▹";
+      position: absolute;
+      left: 0.2rem;
+      color: #2e7d9e;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.5;
+      opacity: 0.8;
+    }
+
+    .card ul li.ai-li::before {
+      color: #8b5cf6;
+    }
+
+    .mini-case {
+      margin-top: 1.1rem;
+      background: #f1f8fe;
+      border-radius: 16px;
+      padding: 0.9rem 1.2rem;
+      border-left: 4px solid #7fb4d0;
+      font-size: 0.88rem;
+      color: #2f4e68;
+      line-height: 1.6;
+      box-shadow: 0 2px 10px rgba(0, 30, 50, 0.02);
+      flex-shrink: 0;
+    }
+
+    .mini-case strong {
+      color: #135a7a;
+      font-weight: 620;
+    }
+
+    .mini-case.ai-mini {
+      background: #f5f3ff;
+      border-left-color: #8b5cf6;
+    }
+
+    .mini-case.ai-mini strong {
+      color: #5b21b6;
+    }
+
+    .compare-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+
+    .compare-row {
+      display: flex;
+      gap: 1.2rem;
+      background: #f6fafd;
+      border-radius: 18px;
+      padding: 1.1rem 1.4rem;
+      border: 1px solid #e2ecf5;
+      transition: background 0.2s, border-color 0.2s;
+      align-items: flex-start;
+    }
+
+    .compare-row:hover {
+      background: #f0f7fd;
+      border-color: #c8ddec;
+    }
+
+    .compare-label {
+      flex: 0 0 105px;
+      font-weight: 640;
+      color: #1d5b7a;
+      font-size: 0.92rem;
+      letter-spacing: 0.2px;
+      padding-top: 0.1rem;
+    }
+
+    .compare-content {
+      flex: 1;
+      font-size: 0.93rem;
+      color: #2f4e68;
+      line-height: 1.6;
+    }
+
+    .compare-content strong {
+      color: #0a2a3b;
+      font-weight: 600;
+    }
+
+    /* 圆点进度指示器 */
+    .dots-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.7rem;
+      margin-top: 0.6rem;
+      padding: 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #c2d6e6;
+      transition: background 0.25s, width 0.25s, height 0.25s, border-radius 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .dot.active {
+      background: #1d6e93;
+      width: 28px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(29, 110, 147, 0.3);
+    }
+
+    /* ========== 国家战略时间轴板块（悬停预览） ========== */
+    .timeline-section {
+      margin-top: 1.2rem;
+    }
+
+    .timeline-header {
+      margin-bottom: 1.4rem;
+      position: relative;
+      padding-left: 0.75rem;
+    }
+
+    .timeline-header::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.3rem;
+      bottom: 0.3rem;
+      width: 4px;
+      background: linear-gradient(to bottom, #8b5cf6, #c4b5fd);
+      border-radius: 4px;
+    }
+
+    .timeline-header h2 {
+      font-size: 2rem;
+      font-weight: 540;
+      color: #0a1e2e;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .timeline-header h2 .accent {
+      color: #7c3aed;
+    }
+
+    .timeline-header .timeline-sub {
+      font-size: 0.98rem;
+      color: #4c6e88;
+      line-height: 1.65;
+      max-width: 800px;
+    }
+
+    /* 时间轴容器 */
+    .timeline-card {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 2.2rem 2.4rem;
+      border: 1px solid #e2ecf5;
+      box-shadow: 0 12px 36px -10px rgba(0, 40, 70, 0.1), 0 4px 12px rgba(0, 0, 0, 0.02);
+      position: relative;
+    }
+
+    .timeline-list {
+      position: relative;
+      padding-left: 2.6rem;
+    }
+
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      left: 0.85rem;
+      top: 0.6rem;
+      bottom: 0.6rem;
+      width: 2px;
+      background: linear-gradient(to bottom, #8b5cf6 0%, #c4b5fd 60%, #ddd6fe 100%);
+      border-radius: 2px;
+    }
+
+    /* 每个时间轴节点 */
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2.2rem;
+      cursor: pointer;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    /* 节点圆点 */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.6rem;
+      top: 0.35rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid #8b5cf6;
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+      z-index: 2;
+      transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s, background 0.25s;
+    }
+
+    .timeline-item:hover::before {
+      box-shadow: 0 0 0 8px rgba(139, 92, 246, 0.25);
+      border-color: #6d28d9;
+      background: #8b5cf6;
+      transform: scale(1.15);
+    }
+
+    .timeline-date {
+      font-size: 0.82rem;
+      font-weight: 660;
+      color: #7c3aed;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .timeline-item:hover .timeline-date {
+      color: #5b21b6;
+    }
+
+    .timeline-title {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #0f2a3b;
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+      transition: color 0.2s;
+    }
+
+    .timeline-item:hover .timeline-title {
+      color: #5b21b6;
+    }
+
+    .timeline-desc {
+      font-size: 0.92rem;
+      color: #5b7691;
+      line-height: 1.65;
+    }
+
+    .timeline-desc strong {
+      color: #3b2a6b;
+      font-weight: 600;
+    }
+
+    /* ===== 悬停预览浮层 ===== */
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-preview {
+      position: absolute;
+      left: calc(100% + 1.4rem);
+      top: -0.6rem;
+      width: 320px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 20px 48px -12px rgba(60, 30, 120, 0.22), 0 8px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      z-index: 20;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-8px) scale(0.98);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      pointer-events: none;
+    }
+
+    .timeline-item:hover .timeline-preview {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+    }
+
+    /* 浮层箭头 */
+    .timeline-preview::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 1.1rem;
+      width: 16px;
+      height: 16px;
+      background: #ffffff;
+      border-left: 1px solid rgba(139, 92, 246, 0.2);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+
+    .timeline-preview .preview-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 640;
+      color: #5b21b6;
+      background: #ede9fe;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      letter-spacing: 0.4px;
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-preview .preview-title {
+      font-size: 0.95rem;
+      font-weight: 640;
+      color: #0f2a3b;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .timeline-preview .preview-detail {
+      font-size: 0.84rem;
+      color: #5b7691;
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-preview .preview-detail strong {
+      color: #3b2a6b;
+      font-weight: 620;
+    }
+
+    .timeline-preview .preview-meta {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.7rem;
+      padding-top: 0.7rem;
+      border-top: 1px dashed rgba(139, 92, 246, 0.2);
+    }
+
+    .timeline-preview .preview-meta span {
+      font-size: 0.72rem;
+      color: #7c3aed;
+      background: rgba(139, 92, 246, 0.08);
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-weight: 520;
+    }
+
+    /* 浮层进入动画 — 内部元素错峰出现 */
+    .timeline-preview .preview-badge,
+    .timeline-preview .preview-title,
+    .timeline-preview .preview-detail,
+    .timeline-preview .preview-meta {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-preview .preview-badge {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.05s;
+    }
+
+    .timeline-item:hover .timeline-preview .preview-title {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+
+    .timeline-item:hover .timeline-preview .preview-detail {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.15s;
+    }
+
+    .timeline-item:hover .timeline-preview .preview-meta {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.2s;
+    }
+
+    /* ========== 底部总结卡片 ========== */
+    .summary-card {
+      margin-top: 2.8rem;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 26px;
+      padding: 1.6rem 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 8px 28px -8px rgba(0, 40, 70, 0.08);
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .summary-card .icon {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .summary-card p {
+      font-size: 0.98rem;
+      color: #1e3c50;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .summary-card strong {
+      color: #135a7a;
+      font-weight: 620;
+    }
+
+    .summary-card .ai-summary-strong {
+      color: #5b21b6;
+      font-weight: 640;
+    }
+
+    /* 页脚 */
+    .footer-note {
+      margin-top: 3.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #7d99b0;
+      border-top: 1px solid #d4e3ef;
+      padding-top: 2rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 1100px) {
+      /* 屏幕较窄时浮层改为显示在节点下方，避免溢出 */
+      .timeline-preview {
+        left: 0;
+        top: calc(100% + 0.6rem);
+        width: 100%;
+        max-width: 380px;
+      }
+      .timeline-preview::before {
+        left: 1.1rem;
+        top: -8px;
+        border-left: 1px solid rgba(139, 92, 246, 0.2);
+        border-bottom: none;
+        border-top: 1px solid rgba(139, 92, 246, 0.2);
+      }
+    }
+
+    @media (max-width: 900px) {
+      #trackDef .single-card-item {
+        flex: 0 0 80%;
+      }
+    }
+
+    @media (max-width: 700px) {
+      body { padding: 1.2rem 1rem 2rem; }
+      .page-header h1 { font-size: 2rem; }
+      .page-header .subhead { font-size: 0.9rem; }
+      .glass-definition { padding: 1.5rem 1.4rem; border-radius: 26px; }
+      .glass-definition h2 { font-size: 1.6rem; }
+      .glass-definition .def-text { font-size: 0.94rem; }
+      .ai-engine-banner { padding: 0.9rem 1.1rem; }
+      .ai-engine-banner p { font-size: 0.9rem; }
+      .card { padding: 1.4rem 1.4rem 1.6rem; border-radius: 24px; }
+      .card h3 { font-size: 1.4rem; }
+      .card p { font-size: 0.92rem; }
+      .card ul li { font-size: 0.88rem; }
+      .compare-row { flex-direction: column; gap: 0.5rem; padding: 1rem; }
+      .compare-label { flex: 0 0 auto; }
+      .mini-case { font-size: 0.84rem; padding: 0.8rem 1rem; }
+      .card-image .img-caption { font-size: 0.66rem; padding: 1rem 0.6rem 0.5rem; }
+      .section-label h2 { font-size: 1.3rem; }
+      .section-label .hint { font-size: 0.7rem; padding: 0.2rem 0.9rem; }
+      .summary-card { padding: 1.2rem 1.2rem; flex-direction: column; gap: 0.6rem; }
+
+      #trackDef .single-card-item {
+        flex: 0 0 88%;
+        padding: 0 0.6rem;
+      }
+
+      .timeline-header h2 { font-size: 1.5rem; }
+      .timeline-header .timeline-sub { font-size: 0.88rem; }
+      .timeline-card { padding: 1.5rem 1.4rem; border-radius: 26px; }
+      .timeline-list { padding-left: 2rem; }
+      .timeline-list::before { left: 0.6rem; }
+      .timeline-item::before { left: -2rem; width: 14px; height: 14px; border-width: 3px; }
+      .timeline-title { font-size: 1rem; }
+      .timeline-desc { font-size: 0.86rem; }
+    }
+
+    @media (max-width: 420px) {
+      .card { padding: 1.2rem; }
+      .glass-definition { padding: 1.2rem 1rem; }
+      #trackDef .single-card-item {
+        flex: 0 0 92%;
+      }
+      .timeline-card { padding: 1.2rem 1rem; }
+      .timeline-list { padding-left: 1.6rem; }
+      .timeline-list::before { left: 0.4rem; }
+      .timeline-item::before { left: -1.6rem; width: 12px; height: 12px; }
+    }
+
+    /* ================= 分层结构 ================= */
+    /* 二级菜单：纯灰色背景 + 与标题同一行 */
+    .subnav {
+      flex: 0 1 auto;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem;
+      border-radius: 18px;
+      background: #d9d9d9;
+      border: 1px solid #c4c4c4;
+      box-shadow: 0 12px 26px -20px rgba(40, 40, 40, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .subnav-item {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.55rem 0.8rem;
+      border: none;
+      background: none;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 560;
+      color: #42627a;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    /* 未停留的二级页面：只显示编号 */
+    .subnav-item:not(.is-active) {
+      flex: 0 0 auto;
+      min-width: 56px;
+    }
+
+    .subnav-item:not(.is-active) .subnav-title { display: none; }
+
+    .subnav-item:hover { background: rgba(255, 255, 255, 0.55); color: #0f2a3b; }
+
+    .subnav-item.is-active {
+      color: #ffffff;
+      background: linear-gradient(135deg, #2e7d9e 0%, #7c3aed 100%);
+      box-shadow: 0 12px 24px -14px rgba(46, 125, 158, 0.9);
+    }
+
+    .subnav-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      opacity: 0.7;
+    }
+
+    .subnav-item.is-active .subnav-num { opacity: 0.92; }
+
+    .layer {
+      margin-top: 1.1rem;
+      border-radius: 22px;
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .layer.is-open {
+      margin-top: 1.6rem;
+      background: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 18px 40px -32px rgba(0, 40, 70, 0.6);
+      padding: 0 1.1rem 1.6rem;
+    }
+
+    /* 四个二级页面统一大小（等高），内容完整展示 */
+    .layer-body {
+      display: flex;
+      flex-direction: column;
+      min-height: 600px;
+      animation: layerIn 0.4s ease;
+    }
+
+    /* 总结页内容较少，垂直居中 */
+    #layer5 .layer-body { justify-content: center; }
+
+    /* ========== 04 AI 作用 · 数据看板 ========== */
+    .board-wrap {
+      position: relative;
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+
+    .board {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: minmax(0, 1fr);
+      gap: 0.62rem;
+      min-height: 0;
+    }
+
+    .kpi-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.62rem;
+    }
+
+    .kpi {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.1rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 16px;
+      border: 1px solid #dfeaf4;
+      /* 白底 + 淡渐变：避免背后数据流透出来 */
+      background: linear-gradient(135deg, rgba(46, 125, 158, 0.1), rgba(124, 58, 237, 0.1)), #ffffff;
+      box-shadow: 0 14px 30px -26px rgba(0, 40, 70, 0.6);
+    }
+
+    .kpi-num {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #5b21b6;
+      letter-spacing: -0.01em;
+    }
+
+    .kpi-num small {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #7c3aed;
+      margin-left: 0.18rem;
+    }
+
+    .kpi-label {
+      font-size: 0.67rem;
+      color: #6b8698;
+      line-height: 1.35;
+    }
+
+    .board-panel {
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      border: 1px solid #e2ecf5;
+      border-radius: 16px;
+      padding: 0.55rem 0.7rem 0.5rem;
+      min-height: 0;
+      box-shadow: 0 16px 34px -28px rgba(0, 40, 70, 0.6);
+      transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .board-panel:hover {
+      border-color: #cfe2ef;
+      box-shadow: 0 22px 40px -30px rgba(0, 40, 70, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .board-head {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.15rem;
+      font-size: 0.76rem;
+      font-weight: 620;
+      color: #1d5b7a;
+      letter-spacing: 0.2px;
+    }
+
+    .board-head .board-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #2e7d9e, #7c3aed);
+    }
+
+    .board-chart {
+      flex: 1;
+      min-height: 0;
+    }
+
+    .board-chart svg { display: block; }
+
+    .board-foot {
+      margin-top: 0.18rem;
+      font-size: 0.64rem;
+      color: #8aa5b8;
+      line-height: 1.4;
+    }
+
+    .board-note {
+      margin-top: 0.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #8aa5b8;
+      line-height: 1.5;
+    }
+
+    /* p5：看板背后的数据流与前景粒子 */
+    .board-stream,
+    .board-fx {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .board-stream { z-index: 0; border-radius: 18px; overflow: hidden; opacity: 0.75; }
+    .board-fx { z-index: 6; }
+    .board-stream canvas,
+    .board-fx canvas { display: block; }
+
+    @media (max-width: 1200px) {
+      .board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .board-panel { min-height: 240px; }
+    }
+
+    @media (max-width: 820px) {
+      .board { grid-template-columns: 1fr; }
+      .kpi-row { grid-template-columns: 1fr; }
+      .board-panel { min-height: 250px; }
+    }
+
+    @keyframes layerIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* 仅显示当前二级页面，其余整页隐藏 */
+    .layer:not(.is-open) { display: none; }
+
+    .layer-head {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-height: 113px;
+      padding: 0.95rem 0.9rem 1rem;
+      margin-bottom: 1.1rem;
+      border-bottom: 1px solid #dfeaf4;
+      border-radius: 16px 16px 0 0;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .layer-head:focus-visible { outline: 2px solid #8ab6d0; outline-offset: 2px; }
+
+    /* 总结页：卡片不必再留出与上方板块的间距 */
+    #layer4 .summary-card { margin-top: 0.4rem; }
+
+    @media (max-width: 700px) {
+      .subnav { gap: 0.35rem; padding: 0.4rem; }
+      .subnav-item { padding: 0.5rem 0.35rem; font-size: 0.78rem; gap: 0.3rem; }
+      .subnav-item:not(.is-active) { min-width: 46px; }
+      .layer.is-open { padding: 0 0.6rem 1.2rem; }
+      .layer-head { padding: 0.8rem 0.6rem 0.85rem; gap: 0.7rem; }
+    }
+
+    @media (max-width: 900px) {
+      .page-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.9rem;
+      }
+      .subnav { width: 100%; }
+    }
+
+    .layer-num {
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #2e7d9e 0%, #7c3aed 100%);
+      box-shadow: 0 10px 22px -8px rgba(46, 125, 158, 0.5);
+    }
+
+    .layer-heading { min-width: 0; flex: 1; }
+
+    .layer-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0f2a3b;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .layer-sub {
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+      color: #5b7691;
+      line-height: 1.65;
+      max-width: 900px;
+    }
+
+    /* 定义与关系 —— 三项关系条 */
+    .relation-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .relation-item {
+      background: #ffffff;
+      border: 1px solid #e2ecf5;
+      border-radius: 20px;
+      padding: 1.15rem 1.25rem;
+      box-shadow: 0 10px 26px -20px rgba(0, 40, 70, 0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .relation-item:hover {
+      transform: translateY(-3px);
+      border-color: #cfe2ef;
+      box-shadow: 0 20px 36px -22px rgba(0, 40, 70, 0.5);
+    }
+
+    .relation-item .rel-icon {
+      display: block;
+      font-size: 1.35rem;
+      line-height: 1;
+      margin-bottom: 0.55rem;
+    }
+
+    .relation-item h4 {
+      font-size: 1rem;
+      font-weight: 620;
+      color: #0f2a3b;
+      margin-bottom: 0.4rem;
+    }
+
+    .relation-item p {
+      font-size: 0.84rem;
+      color: #4c6e88;
+      line-height: 1.68;
+    }
+
+    /* ================= 第二层：横向国家战略时间轴 ================= */
+    .htimeline { position: relative; padding: 0.4rem 0; }
+
+    .htl-track {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      gap: 0.6rem;
+    }
+
+    .htl-axis {
+      position: absolute;
+      left: 2%;
+      right: 2%;
+      top: 50%;
+      height: 3px;
+      border-radius: 3px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, rgba(196, 181, 253, 0.45), #8b5cf6 12%, #7c3aed 50%, #8b5cf6 88%, rgba(196, 181, 253, 0.45));
+      box-shadow: 0 2px 12px rgba(124, 58, 237, 0.18);
+    }
+
+    .htl-item {
+      position: relative;
+      flex: 1 1 0;
+      min-width: 0;
+      height: 490px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .htl-card {
+      position: absolute;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid #e2ecf5;
+      border-radius: 18px;
+      padding: 0.85rem 0.95rem;
+      box-shadow: 0 12px 28px -22px rgba(0, 40, 70, 0.45);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .htl-item.is-up .htl-card { bottom: calc(50% + 36px); }
+    .htl-item.is-down .htl-card { top: calc(50% + 36px); }
+
+    .htl-item:hover .htl-card,
+    .htl-item:focus-visible .htl-card,
+    .htl-item.is-open .htl-card {
+      border-color: #c9bdf5;
+      transform: translateY(-3px);
+      box-shadow: 0 22px 38px -24px rgba(76, 40, 140, 0.55);
+    }
+
+    .htl-date {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      color: #7c3aed;
+      margin-bottom: 0.3rem;
+    }
+
+    .htl-title {
+      font-size: 0.86rem;
+      font-weight: 620;
+      color: #0f2a3b;
+      line-height: 1.42;
+      margin-bottom: 0.35rem;
+    }
+
+    .htl-desc {
+      font-size: 0.74rem;
+      color: #5b7691;
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .htl-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 15px;
+      height: 15px;
+      margin: -7.5px 0 0 -7.5px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid #8b5cf6;
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+      z-index: 3;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .htl-item:hover .htl-dot,
+    .htl-item:focus-visible .htl-dot,
+    .htl-item.is-open .htl-dot {
+      background: #8b5cf6;
+      border-color: #6d28d9;
+      transform: scale(1.2);
+      box-shadow: 0 0 0 8px rgba(139, 92, 246, 0.2);
+    }
+
+    .htl-stem {
+      position: absolute;
+      left: 50%;
+      width: 2px;
+      margin-left: -1px;
+      background: linear-gradient(to bottom, rgba(139, 92, 246, 0.5), rgba(139, 92, 246, 0.14));
+      z-index: 1;
+    }
+
+    .htl-item.is-up .htl-stem { bottom: 50%; height: 36px; }
+    .htl-item.is-down .htl-stem { top: 50%; height: 36px; }
+
+    /* 悬浮/点击抛出的详情（复用时间轴浮层样式） */
+    .htl-item .htl-detail {
+      left: 50%;
+      top: auto;
+      bottom: auto;
+      width: 300px;
+      --tx: translateX(-50%);
+      transform: var(--tx) translateY(6px) scale(0.96);
+      z-index: 30;
+    }
+
+    .htl-item.is-up .htl-detail { top: calc(50% + 46px); bottom: auto; }
+    .htl-item.is-down .htl-detail { bottom: calc(50% + 46px); top: auto; }
+
+    .htl-item:nth-child(1) .htl-detail,
+    .htl-item:nth-child(2) .htl-detail {
+      left: 0;
+      --tx: translateX(0);
+    }
+
+    .htl-item:nth-child(5) .htl-detail,
+    .htl-item:nth-child(6) .htl-detail {
+      left: auto;
+      right: 0;
+      --tx: translateX(0);
+    }
+
+    .htl-item .htl-detail::before { display: none; }
+
+    .htl-item:hover .htl-detail,
+    .htl-item.is-open .htl-detail {
+      opacity: 1;
+      visibility: visible;
+      transform: var(--tx) translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .htl-item .htl-detail .preview-badge,
+    .htl-item .htl-detail .preview-title,
+    .htl-item .htl-detail .preview-detail,
+    .htl-item .htl-detail .preview-meta {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ================= 第三层：承载产业（左） + 行业标杆（右） ================= */
+    .carrier-split {
+      display: flex;
+      gap: 1.6rem;
+      align-items: stretch;
+    }
+
+    .carrier-col {
+      flex: 0 0 37%;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bench-col {
+      flex: 1 1 63%;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .col-head {
+      position: relative;
+      padding-left: 0.7rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .col-head::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      bottom: 0.2rem;
+      width: 3px;
+      border-radius: 3px;
+      background: linear-gradient(to bottom, #2e7d9e, #8b5cf6);
+    }
+
+    .col-head h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0f2a3b;
+      letter-spacing: -0.01em;
+    }
+
+    .carrier-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .carrier-item {
+      background: #ffffff;
+      border: 1px solid #e2ecf5;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .carrier-item.is-open {
+      border-color: #c9dff0;
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+      box-shadow: 0 20px 36px -24px rgba(0, 40, 70, 0.5);
+    }
+
+    .carrier-head {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.1rem;
+      background: none;
+      border: none;
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .carrier-icon {
+      flex-shrink: 0;
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .carrier-texts { flex: 1; min-width: 0; }
+
+    .carrier-name {
+      display: block;
+      font-size: 0.98rem;
+      font-weight: 620;
+      color: #0f2a3b;
+      letter-spacing: 0.2px;
+      line-height: 1.35;
+    }
+
+    .carrier-brief {
+      display: block;
+      margin-top: 0.15rem;
+      font-size: 0.74rem;
+      color: #8aa5b8;
+    }
+
+    .carrier-toggle {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      background: #eaf3fa;
+      color: #1d6e93;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1;
+      transition: transform 0.32s ease, background 0.25s ease, color 0.25s ease;
+    }
+
+    .carrier-item.is-open .carrier-toggle {
+      transform: rotate(45deg);
+      background: #ede9fe;
+      color: #6d28d9;
+    }
+
+    .carrier-body {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      padding: 0 1.1rem;
+      transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s ease;
+    }
+
+    .carrier-item.is-open .carrier-body {
+      max-height: 560px;
+      opacity: 1;
+      padding: 0 1.1rem 1.15rem;
+    }
+
+    .carrier-body p {
+      font-size: 0.82rem;
+      color: #4c6e88;
+      line-height: 1.68;
+      margin-bottom: 0.55rem;
+    }
+
+    .carrier-body ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .carrier-body ul li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: 0.79rem;
+      color: #3d5e76;
+      line-height: 1.62;
+      margin-bottom: 0.5rem;
+    }
+
+    .carrier-body ul li:last-child { margin-bottom: 0; }
+
+    .carrier-body ul li::before {
+      content: '▹';
+      position: absolute;
+      left: 0.05rem;
+      top: 0;
+      color: #2e7d9e;
+      font-weight: 700;
+      opacity: 0.85;
+    }
+
+    .carrier-body ul li strong,
+    .carrier-body p strong { color: #0f3348; font-weight: 620; }
+
+    .carrier-foot {
+      margin-top: 0.7rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: 12px;
+      background: #eef6fc;
+      font-size: 0.78rem;
+      color: #2f4e68;
+      line-height: 1.6;
+    }
+
+    .carrier-foot strong { color: #1d5b7a; font-weight: 640; }
+
+    .carrier-note {
+      margin-top: auto;
+      padding-top: 1rem;
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+
+    .carrier-note .note-icon {
+      font-size: 1.05rem;
+      line-height: 1.35;
+      flex-shrink: 0;
+    }
+
+    .carrier-note p {
+      font-size: 0.79rem;
+      color: #5b7691;
+      line-height: 1.68;
+    }
+
+    .carrier-note strong { color: #1d5b7a; font-weight: 620; }
+
+    .carrier-item[data-ind="future"] .carrier-foot { background: #f5f2ff; }
+    .carrier-item[data-ind="future"] .carrier-foot strong { color: #5b21b6; }
+    .carrier-item[data-ind="traditional"] .carrier-foot { background: #eefaf8; }
+    .carrier-item[data-ind="traditional"] .carrier-foot strong { color: #0f766e; }
+
+    /* 右侧：行业标杆分组 */
+    .bench-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bench-group-head {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.88rem;
+      font-weight: 620;
+      color: #1d5b7a;
+      letter-spacing: 0.2px;
+    }
+
+    .bench-group-head .group-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    #benchPanel[data-group="all"] .group-dot { background: linear-gradient(135deg, #2f87ab, #7c3aed); }
+    #benchPanel[data-group="strategic"] .group-dot { background: #2f87ab; }
+    #benchPanel[data-group="future"] .group-dot { background: #7c3aed; }
+    #benchPanel[data-group="traditional"] .group-dot { background: #12a08f; }
+    #benchPanel[data-group="all"] .bench-group-head { color: #1d5b7a; }
+    #benchPanel[data-group="future"] .bench-group-head { color: #6d28d9; }
+    #benchPanel[data-group="traditional"] .bench-group-head { color: #0f766e; }
+
+    .group-count {
+      margin-left: auto;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #8aa5b8;
+      background: #f2f7fb;
+      padding: 0.16rem 0.62rem;
+      border-radius: 20px;
+    }
+
+    .bench-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 430px;
+      background: #ffffff;
+      border: 1px solid #e2ecf5;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px -22px rgba(0, 40, 70, 0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .bench-card:hover {
+      transform: translateY(-2px);
+      border-color: #cfe2ef;
+      box-shadow: 0 22px 38px -24px rgba(0, 40, 70, 0.5);
+    }
+
+    .bench-media {
+      position: relative;
+      flex: 0 0 auto;
+      width: 100%;
+      height: 190px;
+      overflow: hidden;
+      background: #e8f0f8;
+    }
+
+    /* 卡面左上角：所属产业分类 */
+    .bench-cat {
+      position: absolute;
+      left: 0.75rem;
+      top: 0.75rem;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.38rem;
+      font-size: 0.7rem;
+      font-weight: 620;
+      letter-spacing: 0.2px;
+      color: #0f3a52;
+      background: rgba(255, 255, 255, 0.92);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      padding: 0.22rem 0.66rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px -6px rgba(0, 30, 50, 0.35);
+    }
+
+    .bench-cat i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2f87ab;
+      flex-shrink: 0;
+    }
+
+    .single-card-item[data-group="future"] .bench-cat { color: #4c2f9e; }
+    .single-card-item[data-group="future"] .bench-cat i { background: #7c3aed; }
+    .single-card-item[data-group="traditional"] .bench-cat { color: #0f5f58; }
+    .single-card-item[data-group="traditional"] .bench-cat i { background: #12a08f; }
+
+    .bench-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .bench-card:hover .bench-media img { transform: scale(1.04); }
+
+    .bench-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 1.05rem 1.2rem 1.15rem;
+    }
+
+    /* 单卡拖拽轨道（行业标杆） */
+    .bench-track {
+      padding: 0.2rem 0 0.5rem;
+      cursor: grab;
+    }
+
+    .bench-track .single-card-item {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .bench-track .single-card-item > .bench-card { width: 100%; }
+
+    .bench-panel .dots-container { margin-top: 0.1rem; }
+
+    .bench-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 620;
+      letter-spacing: 0.4px;
+      color: #1d5b7a;
+      background: #eaf3fa;
+      padding: 0.18rem 0.62rem;
+      border-radius: 20px;
+      margin-bottom: 0.45rem;
+    }
+
+    .single-card-item[data-group="future"] .bench-tag { color: #6d28d9; background: #f1ecfe; }
+    .single-card-item[data-group="traditional"] .bench-tag { color: #0f766e; background: #e8f7f4; }
+
+    .bench-card h4 {
+      font-size: 1.02rem;
+      font-weight: 620;
+      color: #0f2a3b;
+      line-height: 1.35;
+      margin-bottom: 0.3rem;
+    }
+
+    .bench-card p {
+      font-size: 0.82rem;
+      color: #4c6e88;
+      line-height: 1.62;
+    }
+
+    .bench-points {
+      list-style: none;
+      margin: 0.55rem 0 0.65rem;
+      padding: 0;
+    }
+
+    .bench-points li {
+      position: relative;
+      padding-left: 1rem;
+      font-size: 0.78rem;
+      color: #3d5e76;
+      line-height: 1.6;
+      margin-bottom: 0.28rem;
+    }
+
+    .bench-points li:last-child { margin-bottom: 0; }
+
+    .bench-points li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #2e7d9e;
+      font-weight: 700;
+      opacity: 0.85;
+    }
+
+    .single-card-item[data-group="future"] .bench-points li::before { color: #8b5cf6; }
+    .single-card-item[data-group="traditional"] .bench-points li::before { color: #12a08f; }
+
+    .bench-points li strong { color: #0f3348; font-weight: 620; }
+
+    .bench-foot {
+      margin-top: auto;
+      padding: 0.5rem 0.7rem;
+      border-left: 3px solid #a8cde0;
+      border-radius: 8px;
+      background: #f4f9fd;
+      font-size: 0.76rem;
+      color: #5b7691;
+      line-height: 1.6;
+    }
+
+    .bench-foot strong { color: #1d5b7a; font-weight: 620; }
+
+    @media (max-width: 1000px) {
+      .bench-card { min-height: 0; }
+    }
+
+    @media (max-width: 1000px) {
+      .carrier-split { flex-direction: column; gap: 1.6rem; }
+      .carrier-col,
+      .bench-col { flex: 1 1 auto; width: 100%; }
+      .relation-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .htl-track { flex-direction: column; gap: 0.85rem; }
+      .htl-axis { display: none; }
+      .htl-item { height: auto; order: var(--i, 0); }
+      .htl-dot,
+      .htl-stem { display: none; }
+      .htl-track .htl-item .htl-card,
+      .htl-track .htl-item.is-up .htl-card,
+      .htl-track .htl-item.is-down .htl-card { position: static; }
+      .htl-desc { -webkit-line-clamp: unset; overflow: visible; }
+      .htl-item .htl-detail,
+      .htl-item.is-up .htl-detail,
+      .htl-item.is-down .htl-detail,
+      .htl-item:nth-child(1) .htl-detail,
+      .htl-item:nth-child(2) .htl-detail,
+      .htl-item:nth-child(5) .htl-detail,
+      .htl-item:nth-child(6) .htl-detail {
+        position: absolute;
+        left: 0;
+        right: auto;
+        top: 100%;
+        bottom: auto;
+        width: 100%;
+        --tx: translateX(0);
+        transform: translateY(6px) scale(0.98);
+      }
+      .htl-item:hover .htl-detail,
+      .htl-item.is-open .htl-detail { transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 640px) {
+      .layer-num { width: 40px; height: 40px; border-radius: 13px; font-size: 0.85rem; }
+      .layer-title { font-size: 1.25rem; }
+      .bench-card { flex-direction: column; }
+      .bench-media { flex: 0 0 auto; width: 100%; height: 150px; }
+      .carrier-name { font-size: 0.92rem; }
+    }
+    /* ========== 二级页面 1：同一高度滚轮播放关键信息 ========== */
+    .stage {
+      flex: 1;
+      display: flex;
+      gap: 1.2rem;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    /* 三级菜单：默认收在左侧，仅留编号把手，悬停/点击展开 */
+    .stage-drawer {
+      position: relative;
+      z-index: 6;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .stage-handle {
+      flex-shrink: 0;
+      width: 40px;
+      height: 104px;
+      border: 1px solid #dbe8f2;
+      border-right: none;
+      border-radius: 14px 0 0 14px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #4f6d82;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      font-family: inherit;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .stage-handle:hover { background: #eef6fc; color: #0f2a3b; }
+    .stage-handle .handle-icon { font-size: 0.9rem; line-height: 1; opacity: 0.6; }
+
+    .stage-rail {
+      width: 0;
+      opacity: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #ffffff;
+      border-radius: 0 16px 16px 0;
+      box-shadow: 0 16px 32px -26px rgba(0, 40, 70, 0.7);
+      transition: width 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+    }
+
+    .stage-drawer:hover .stage-rail,
+    .stage-drawer:focus-within .stage-rail,
+    .stage-drawer.is-open .stage-rail {
+      width: 176px;
+      opacity: 1;
+      padding: 0.7rem 0.9rem 0.7rem 1rem;
+    }
+
+    .stage-step {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.62rem 0.8rem;
+      border: none;
+      border-radius: 14px;
+      background: none;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 520;
+      color: #6b8698;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .stage-step .step-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      opacity: 0.75;
+    }
+
+    .stage-step:hover { background: #eef6fc; color: #0f2a3b; }
+
+    .stage-step.is-active {
+      color: #ffffff;
+      background: linear-gradient(135deg, #2e7d9e, #7c3aed);
+      box-shadow: 0 12px 24px -16px rgba(46, 125, 158, 0.9);
+      transform: translateX(3px);
+    }
+
+    .stage-view {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stage-slide {
+      display: none;
+      flex: 1;
+      background: #ffffff;
+      border: 1px solid #e2ecf5;
+      border-radius: 22px;
+      padding: 1.5rem 1.7rem 1.6rem;
+      box-shadow: 0 14px 34px -26px rgba(0, 40, 70, 0.55);
+    }
+
+    .stage-slide.is-active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: slideIn 0.45s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* 弹幕式汇聚：每屏的关键信息从四个方向飞入并归位 */
+    .stage-slide.is-active > .slide-tag,
+    .stage-slide.is-active > h3,
+    .stage-slide.is-active > .slide-lead,
+    .stage-slide.is-active > .slide-foot,
+    .stage-slide.is-active .slide-points > li,
+    .stage-slide.is-active .slide-compare > .cmp-row,
+    .stage-slide.is-active .slide-cards > .mini-card {
+      animation: danmakuConverge 0.66s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes danmakuConverge {
+      from {
+        opacity: 0;
+        transform: translate(var(--fx, 0px), var(--fy, 0px)) scale(0.93);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+    }
+
+    /* 方向与节拍：左 → 下 → 右 → 上 轮流汇聚 */
+    .stage-slide > .slide-tag { --fx: -140px; animation-delay: 0.04s; }
+    .stage-slide > h3 { --fy: 76px; animation-delay: 0.1s; }
+    .stage-slide > .slide-lead { --fx: 140px; animation-delay: 0.16s; }
+    .stage-slide > .slide-foot { --fy: -76px; animation-delay: 0.56s; }
+
+    .stage-slide .slide-points > li:nth-child(1),
+    .stage-slide .slide-compare > .cmp-row:nth-child(1),
+    .stage-slide .slide-cards > .mini-card:nth-child(1) {
+      --fx: -150px;
+      animation-delay: 0.22s;
+    }
+
+    .stage-slide .slide-points > li:nth-child(2),
+    .stage-slide .slide-compare > .cmp-row:nth-child(2),
+    .stage-slide .slide-cards > .mini-card:nth-child(2) {
+      --fy: 86px;
+      animation-delay: 0.3s;
+    }
+
+    .stage-slide .slide-points > li:nth-child(3),
+    .stage-slide .slide-compare > .cmp-row:nth-child(3),
+    .stage-slide .slide-cards > .mini-card:nth-child(3) {
+      --fx: 150px;
+      animation-delay: 0.38s;
+    }
+
+    .stage-slide .slide-points > li:nth-child(4),
+    .stage-slide .slide-compare > .cmp-row:nth-child(4),
+    .stage-slide .slide-cards > .mini-card:nth-child(4) {
+      --fy: -86px;
+      animation-delay: 0.46s;
+    }
+
+    .slide-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 620;
+      letter-spacing: 0.4px;
+      color: #1d6e93;
+      background: #eaf3fa;
+      padding: 0.24rem 0.7rem;
+      border-radius: 20px;
+      margin-bottom: 0.7rem;
+    }
+
+    .stage-slide h3 {
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: #0a2a3b;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .slide-lead {
+      font-size: 0.93rem;
+      color: #3d5e76;
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
+    }
+
+    .slide-lead strong,
+    .slide-points strong,
+    .slide-foot strong,
+    .mini-card strong { color: #0f5a7a; font-weight: 620; }
+
+    .slide-points { list-style: none; margin: 0; padding: 0; }
+
+    .slide-points li {
+      position: relative;
+      padding-left: 1.35rem;
+      font-size: 0.88rem;
+      color: #3d5e76;
+      line-height: 1.72;
+      margin-bottom: 0.55rem;
+    }
+
+    .slide-points li::before {
+      content: '▹';
+      position: absolute;
+      left: 0.15rem;
+      top: 0;
+      color: #2e7d9e;
+      font-weight: 700;
+      opacity: 0.9;
+    }
+
+    .slide-foot {
+      margin-top: 0.95rem;
+      padding: 0.7rem 0.9rem;
+      border-radius: 14px;
+      background: #f1f8fe;
+      border-left: 4px solid #7fb4d0;
+      font-size: 0.85rem;
+      color: #2f4e68;
+      line-height: 1.65;
+    }
+
+    .slide-compare { display: flex; flex-direction: column; gap: 0.8rem; }
+
+    .cmp-row {
+      display: flex;
+      gap: 1rem;
+      padding: 0.95rem 1.1rem;
+      border-radius: 16px;
+      background: #f6fafd;
+      border: 1px solid #e2ecf5;
+    }
+
+    .cmp-row.is-now { background: #f5f3ff; border-color: #ddd2fb; }
+
+    .cmp-label {
+      flex: 0 0 96px;
+      font-size: 0.86rem;
+      font-weight: 640;
+      color: #1d5b7a;
+    }
+
+    .cmp-row.is-now .cmp-label { color: #5b21b6; }
+
+    .cmp-row p { font-size: 0.86rem; color: #3d5e76; line-height: 1.7; }
+
+    .slide-cards { display: flex; gap: 0.9rem; }
+
+    .mini-card {
+      flex: 1;
+      background: #f8fbfe;
+      border: 1px solid #e2ecf5;
+      border-radius: 18px;
+      padding: 1rem 1.05rem;
+    }
+
+    .mini-card > span { font-size: 1.25rem; display: block; margin-bottom: 0.45rem; }
+    .mini-card h4 { font-size: 0.95rem; font-weight: 620; color: #0f2a3b; margin-bottom: 0.4rem; }
+    .mini-card p { font-size: 0.79rem; color: #4c6e88; line-height: 1.68; }
+
+    .stage-progress {
+      margin-top: 0.9rem;
+      height: 4px;
+      border-radius: 4px;
+      background: #e3edf5;
+      overflow: hidden;
+    }
+
+    .stage-progress i {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #2e7d9e, #7c3aed);
+      transition: width 0.45s ease;
+    }
+
+    @media (max-width: 900px) {
+      .stage { flex-direction: column; gap: 0.9rem; }
+      .stage-drawer { flex-direction: column; align-items: stretch; width: 100%; }
+      .stage-handle { display: none; }
+      .stage-rail {
+        width: auto;
+        opacity: 1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0 0 0.9rem;
+        border-radius: 0;
+        box-shadow: none;
+        background: none;
+        border-bottom: 1px dashed #dbe8f2;
+      }
+      .stage-step { padding: 0.45rem 0.65rem; font-size: 0.78rem; }
+      .slide-cards { flex-direction: column; }
+      .cmp-row { flex-direction: column; gap: 0.35rem; }
+      .cmp-label { flex: 0 0 auto; }
+      .layer-body { min-height: 0; }
+    }
+    /* ================= D3 / p5 增强层 ================= */
+    /* p5：页面底层粒子网络 */
+    #bgCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.75;
+    }
+
+    #bgCanvas canvas { display: block; }
+
+    .main {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* D3：时间轴由 SVG 绘制轴、节点与脉冲 */
+    .htimeline { position: relative; }
+
+    .htl-svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .htl-track { position: relative; z-index: 1; }
+
+    .htl-track.is-animating .htl-card { transition: none !important; }
+
+    .htimeline.d3-ready .htl-axis,
+    .htimeline.d3-ready .htl-dot,
+    .htimeline.d3-ready .htl-stem { display: none; }
+
+    /* p5：切屏时的弹幕粒子画布 */
+    .stage { position: relative; }
+
+    .stage-fx {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .stage-fx canvas { display: block; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #bgCanvas { opacity: 0.3; }
+      .stage-fx { display: none; }
+    }
+
+    /* ================= 特效层 ================= */
+    /* 1. 二级菜单：滑动指示器 + 点击涟漪 */
+    .subnav { position: relative; }
+
+    .subnav-pill {
+      position: absolute;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      left: 0;
+      width: 60px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #2e7d9e 0%, #7c3aed 100%);
+      box-shadow: 0 12px 24px -14px rgba(46, 125, 158, 0.95);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                  width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.3s ease;
+    }
+
+    .subnav-pill.is-ready { opacity: 1; }
+    .subnav-item { position: relative; z-index: 1; }
+    .subnav-item.is-active { background: none; box-shadow: none; }
+
+    /* 2. 卡片：指针跟随的柔光 + 3D 倾斜 */
+    /* 仅给静态定位的卡片补定位上下文，避免覆盖时间轴卡片的 absolute 定位 */
+    .board-panel.fx-tilt,
+    .bench-card.fx-tilt,
+    .carrier-item.fx-tilt { position: relative; }
+
+    .fx-tilt > .fx-glow {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%),
+                  rgba(124, 58, 237, 0.16), rgba(46, 125, 158, 0.08) 45%, transparent 72%);
+      z-index: 2;
+    }
+
+    .fx-tilt:hover > .fx-glow { opacity: 1; }
+    .fx-tilt.fx-active { transition: transform 0.18s ease-out; }
+
+    /* 3. 按钮涟漪 */
+    .fx-ripple { position: relative; overflow: hidden; }
+
+    .fx-ripple .fx-ripple-wave {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(0);
+      opacity: 0.85;
+      pointer-events: none;
+      animation: fxRipple 0.62s ease-out forwards;
+    }
+
+    @keyframes fxRipple {
+      to { transform: scale(2.8); opacity: 0; }
+    }
+
+    /* 4. 图表悬浮提示 */
+    .viz-tip {
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(2px);
+      transition: opacity 0.16s ease, transform 0.16s ease;
+      background: rgba(15, 42, 59, 0.94);
+      color: #ffffff;
+      font-size: 12px;
+      line-height: 1.4;
+      padding: 6px 10px;
+      border-radius: 9px;
+      box-shadow: 0 14px 28px -14px rgba(0, 0, 0, 0.55);
+      white-space: nowrap;
+    }
+
+    .viz-tip.is-on { opacity: 1; transform: translateY(0); }
+
+    /* 5. 二级页面切换：淡入 + 轻微缩放与模糊 */
+    @keyframes layerIn {
+      from { opacity: 0; transform: translateY(10px) scale(0.992); filter: blur(6px); }
+      to { opacity: 1; transform: none; filter: blur(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- p5 画布容器：页面底层粒子网络 -->
+  <div id="bgCanvas" aria-hidden="true"></div>
+
+  <div class="main">
+    <!-- 顶部标题 + 二级菜单 -->
+    <div class="page-header">
+      <div class="page-header-text">
+        <h1>人工智能</h1>
+        <div class="subhead">——新质生产力的核心</div>
+      </div>
+
+      <!-- 二级菜单：三个二级页面 -->
+      <nav class="subnav" id="subnav" aria-label="二级页面">
+        <span class="subnav-pill" aria-hidden="true"></span>
+        <button class="subnav-item is-active" type="button" data-target="layer1">
+          <span class="subnav-num">01</span><span class="subnav-title">定义与关系</span>
+        </button>
+        <button class="subnav-item" type="button" data-target="layer2">
+          <span class="subnav-num">02</span><span class="subnav-title">国家战略时间轴</span>
+        </button>
+        <button class="subnav-item" type="button" data-target="layer3">
+          <span class="subnav-num">03</span><span class="subnav-title">承载产业与行业标杆</span>
+        </button>
+        <button class="subnav-item" type="button" data-target="layer4">
+          <span class="subnav-num">04</span><span class="subnav-title">AI 作用数据</span>
+        </button>
+        <button class="subnav-item" type="button" data-target="layer5">
+          <span class="subnav-num">05</span><span class="subnav-title">总结</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- ========== 二级页面 1：定义与关系 ========== -->
+    <section class="layer is-open" id="layer1">
+      <div class="layer-head">
+        <span class="layer-num">01</span>
+        <div class="layer-heading">
+          <h2 class="layer-title">定义与关系</h2>
+          <p class="layer-sub">
+            人工智能是引领新一轮科技革命和产业变革的战略性技术，新质生产力是区别于传统生产力的先进生产力质态。二者的关系可以概括为：<strong>AI 是新质生产力的技术源头、要素重构的关键变量，也是产业升级的通用赋能技术</strong>。
+          </p>
+        </div>
+      </div>
+
+      <div class="layer-body">
+
+        <!-- 滚轮播放：关键信息（同一高度停留） -->
+        <div class="stage" id="introStage">
+          <div class="stage-drawer" id="stageDrawer">
+            <button class="stage-handle" type="button" aria-label="展开步骤菜单">
+              <span class="handle-num">01</span>
+              <span class="handle-icon">›</span>
+            </button>
+            <div class="stage-rail">
+            <button class="stage-step is-active" type="button"><span class="step-num">01</span><span class="step-name">概念界定</span></button>
+            <button class="stage-step" type="button"><span class="step-num">02</span><span class="step-name">AI 定位</span></button>
+            <button class="stage-step" type="button"><span class="step-num">03</span><span class="step-name">二者关系</span></button>
+            <button class="stage-step" type="button"><span class="step-num">04</span><span class="step-name">新旧对比</span></button>
+            <button class="stage-step" type="button"><span class="step-num">05</span><span class="step-name">三要素重塑</span></button>
+            <button class="stage-step" type="button"><span class="step-num">06</span><span class="step-name">核心特征</span></button>
+            </div>
+          </div>
+
+          <div class="stage-view">
+            <!-- 01 -->
+            <article class="stage-slide is-active">
+              <span class="slide-tag">概念界定</span>
+              <h3>新质生产力</h3>
+              <p class="slide-lead">新时代中国经济高质量发展的核心动能，是<strong>区别于传统生产力的先进生产力质态</strong>。</p>
+              <ul class="slide-points">
+                <li><strong>以创新为主导：</strong>摆脱资源消耗型、规模扩张型增长模式，契合新发展理念。</li>
+                <li><strong>三大特征：</strong>高科技 · 高效能 · 高质量。</li>
+                <li><strong>三条路径：</strong>技术革命性突破 · 生产要素创新性配置 · 产业深度转型升级。</li>
+              </ul>
+              <div class="slide-foot">最终结果是生产效率、发展质量、产业价值的<strong>全方位跃升</strong>。</div>
+            </article>
+
+            <!-- 02 -->
+            <article class="stage-slide">
+              <span class="slide-tag">战略定位</span>
+              <h3>人工智能</h3>
+              <p class="slide-lead">新一轮科技革命和产业变革中<strong>最具颠覆性、渗透性、带动性的技术</strong>。</p>
+              <ul class="slide-points">
+                <li><strong>颠覆性：</strong>大模型、多模态、智能体持续突破，不断刷新技术能力上限。</li>
+                <li><strong>渗透性：</strong>作为通用技术嵌入制造、医疗、农业、物流等几乎所有行业。</li>
+                <li><strong>带动性：</strong>以“头雁效应”带动算力、数据、人才等要素协同升级。</li>
+              </ul>
+              <div class="slide-foot">AI 是当前<strong>最核心、最活跃的新质生产力代表</strong>。</div>
+            </article>
+
+            <!-- 03 -->
+            <article class="stage-slide">
+              <span class="slide-tag">二者关系</span>
+              <h3>AI 与新质生产力的三重关系</h3>
+              <ul class="slide-points">
+                <li><strong>① 技术源头：</strong>大模型、深度学习、智能算法持续突破，为新质生产力提供原创性技术供给，这是“新”在何处的根本来源。</li>
+                <li><strong>② 要素重构的关键：</strong>激活数据要素价值、以智能体替代重复性劳动，重组劳动者、劳动资料、劳动对象，推动全要素生产率提升。</li>
+                <li><strong>③ 产业升级的通用赋能技术：</strong>从制造到医疗、从农业到物流全面渗透，带动产业体系整体跃升。</li>
+              </ul>
+            </article>
+
+            <!-- 04 -->
+            <article class="stage-slide">
+              <span class="slide-tag">核心内涵 · 对比</span>
+              <h3>传统生产力 vs 新质生产力</h3>
+              <div class="slide-compare">
+                <div class="cmp-row">
+                  <span class="cmp-label">传统生产力</span>
+                  <p><strong>靠规模、靠消耗</strong> —— 依托大量劳动力、自然资源与能源投入扩大规模，高能耗、高污染、低附加值，效率瓶颈明显。</p>
+                </div>
+                <div class="cmp-row is-now">
+                  <span class="cmp-label">新质生产力</span>
+                  <p><strong>靠创新、靠效率</strong> —— 依托技术革命、要素优化配置与产业数字化，<strong>尤其以 AI 大模型和智能算法为核心驱动力</strong>，以更少资源创造更高价值。</p>
+                </div>
+              </div>
+              <div class="slide-foot">核心逻辑的变化：从“投入驱动”转向<strong>“创新与效率驱动”</strong>。</div>
+            </article>
+
+            <!-- 05 -->
+            <article class="stage-slide">
+              <span class="slide-tag">核心内涵 · 三要素</span>
+              <h3>AI 重塑生产力三要素</h3>
+              <div class="slide-cards">
+                <div class="mini-card">
+                  <span>👷</span>
+                  <h4>劳动者升级</h4>
+                  <p>从体力劳作到创新赋能：科研人员、高端工程师、AI 运维师、数字化技能人才成为核心劳动者。<strong>AI 不是取代人，而是重构人的能力结构</strong>。</p>
+                </div>
+                <div class="mini-card">
+                  <span>🤖</span>
+                  <h4>劳动资料升级</h4>
+                  <p>从传统设备到智能装备：大模型成为“智能大脑”，AI Agent 自主完成复杂任务，工具<strong>从被动执行走向主动决策</strong>。</p>
+                </div>
+                <div class="mini-card">
+                  <span>🌌</span>
+                  <h4>劳动对象升级</h4>
+                  <p>从实体资源到多元要素：<strong>数据成为全新的核心生产要素</strong>，“数据 + AI”还拓展了新材料、生物基因、深海深空等新边界。</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- 06 -->
+            <article class="stage-slide">
+              <span class="slide-tag">核心特征</span>
+              <h3>创新 · 质优 · 先进</h3>
+              <ul class="slide-points">
+                <li><strong>核心是创新：</strong>以科技创新为根本引擎，覆盖商业模式、产业管理、生产机制的全方位创新；<strong>AI 既是创新的内容，又是创新的方法</strong>。</li>
+                <li><strong>关键是质优：</strong>从“有没有”到“好不好”；AI 视觉质检、工艺优化、预测性维护，让“高质量”可量化、可复制。</li>
+                <li><strong>本质是先进生产力：</strong>依托技术突破、要素配置、产业转型三大路径；<strong>AI 是唯一同时驱动三大路径的底层技术</strong>。</li>
+              </ul>
+            </article>
+
+            <div class="stage-progress"><i></i></div>
+          </div>
+        </div>
+
+      </div><!-- /layer-body -->
+    </section>
+
+    <!-- ========== 二级页面 2：国家战略时间轴 ========== -->
+    <section class="layer" id="layer2">
+      <div class="layer-head">
+        <span class="layer-num">02</span>
+        <div class="layer-heading">
+          <h2 class="layer-title">国家战略时间轴</h2>
+          <p class="layer-sub">
+            从“人工智能+”写入政府工作报告，到国务院专项行动意见，再到“十五五”规划定位——政策链条在两年内迅速闭合，这是 AI 作为新质生产力获得制度确认的过程。
+          </p>
+        </div>
+      </div>
+
+      <div class="layer-body">
+
+    <!-- ===== 3. 国家战略时间轴（横向轴 · 上下交替） ===== -->
+    <div class="timeline-section">
+      <div class="timeline-card">
+        <div class="htimeline">
+          <div class="htl-axis"></div>
+          <div class="htl-track">
+          <!-- 2025.03 -->
+          <div class="htl-item is-up" style="--i:1" tabindex="0">
+            <div class="htl-card">
+              <div class="htl-date">2025.03</div>
+              <div class="htl-title">“人工智能+”写入政府工作报告</div>
+              <div class="htl-desc">提出持续推进“人工智能+”行动，把数字技术与制造优势、市场优势结合，赋能产业升级。</div>
+            </div>
+            <span class="htl-stem"></span>
+            <span class="htl-dot"></span>
+
+            <!-- 悬停详情 -->
+            <div class="timeline-preview htl-detail">
+              <span class="preview-badge">政策信号</span>
+              <div class="preview-title">首次将“人工智能+”写入政府工作报告</div>
+              <div class="preview-detail">
+                这是 AI 从技术议题上升为国家战略议题的关键起点。报告明确提出，要<strong>持续推进“人工智能+”行动</strong>，将数字技术与我国的制造优势、市场优势紧密结合，推动 AI 赋能千行百业的产业升级。
+              </div>
+              <div class="preview-meta">
+                <span>🏛 国务院</span>
+                <span>📌 战略起点</span>
+                <span>🎯 产业赋能</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2025.08 -->
+          <div class="htl-item is-down" style="--i:2" tabindex="0">
+            <div class="htl-card">
+              <div class="htl-date">2025.08</div>
+              <div class="htl-title">国务院印发《关于深入实施“人工智能+”行动的意见》</div>
+              <div class="htl-desc">系统部署 6 大重点行动与 8 项基础支撑，设定 2027 / 2030 / 2035 三阶段目标，标志 AI 发展进入以深度融合为重点的新阶段。</div>
+            </div>
+            <span class="htl-stem"></span>
+            <span class="htl-dot"></span>
+
+            <!-- 悬停详情 -->
+            <div class="timeline-preview htl-detail">
+              <span class="preview-badge">顶层设计</span>
+              <div class="preview-title">系统部署“人工智能+”行动路线图</div>
+              <div class="preview-detail">
+                该意见首次系统部署 <strong>6 大重点行动与 8 项基础支撑</strong>，并设定 <strong>2027 / 2030 / 2035 三阶段目标</strong>。这标志着中国 AI 发展从“单点技术突破”正式进入<strong>以深度融合为重点的产业落地新阶段</strong>。
+              </div>
+              <div class="preview-meta">
+                <span>📋 6 大行动</span>
+                <span>🏗 8 项支撑</span>
+                <span>📅 三阶段目标</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2025.09 -->
+          <div class="htl-item is-up" style="--i:3" tabindex="0">
+            <div class="htl-card">
+              <div class="htl-date">2025.09</div>
+              <div class="htl-title">提出《“人工智能+”国际合作倡议》</div>
+              <div class="htl-desc">聚焦民生福祉、科技进步、产业应用、文化繁荣、人才培养五大领域，把 AI 作为国际公共产品。</div>
+            </div>
+            <span class="htl-stem"></span>
+            <span class="htl-dot"></span>
+
+            <!-- 悬停详情 -->
+            <div class="timeline-preview htl-detail">
+              <span class="preview-badge">国际合作</span>
+              <div class="preview-title">推动 AI 成为国际公共产品</div>
+              <div class="preview-detail">
+                倡议聚焦 <strong>民生福祉、科技进步、产业应用、文化繁荣、人才培养</strong> 五大领域，主张把 AI 作为国际公共产品，体现了中国在全球 AI 治理中的开放姿态与责任担当。
+              </div>
+              <div class="preview-meta">
+                <span>🌐 五大领域</span>
+                <span>🤝 国际公共产品</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2025.10 -->
+          <div class="htl-item is-down" style="--i:4" tabindex="0">
+            <div class="htl-card">
+              <div class="htl-date">2025.10</div>
+              <div class="htl-title">“十五五”规划建议：AI 列为新质生产力重点方向</div>
+              <div class="htl-desc">明确“全面实施‘人工智能+’行动”，加强 AI 同产业发展、民生保障、社会治理相结合。</div>
+            </div>
+            <span class="htl-stem"></span>
+            <span class="htl-dot"></span>
+
+            <!-- 悬停详情 -->
+            <div class="timeline-preview htl-detail">
+              <span class="preview-badge">规划定位</span>
+              <div class="preview-title">AI 正式纳入“十五五”规划重点方向</div>
+              <div class="preview-detail">
+                规划建议明确要求 <strong>“全面实施‘人工智能+’行动”</strong>，并强调加强 AI 同<strong>产业发展、民生保障、社会治理</strong>相结合。这标志着 AI 从产业政策上升为国家中长期发展的核心战略方向。
+              </div>
+              <div class="preview-meta">
+                <span>📐 十五五规划</span>
+                <span>🏛 国家战略</span>
+                <span>🎯 三大结合</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2025.12 -->
+          <div class="htl-item is-up" style="--i:5" tabindex="0">
+            <div class="htl-card">
+              <div class="htl-date">2025.12</div>
+              <div class="htl-title">治理框架 2.0 与立法推进</div>
+              <div class="htl-desc">《人工智能安全治理框架》2.0 版发布，形成“包容审慎、分类分级”的治理模式，在发展与安全之间求平衡。</div>
+            </div>
+            <span class="htl-stem"></span>
+            <span class="htl-dot"></span>
+
+            <!-- 悬停详情 -->
+            <div class="timeline-preview htl-detail">
+              <span class="preview-badge">治理体系</span>
+              <div class="preview-title">AI 安全治理框架升级至 2.0 版</div>
+              <div class="preview-detail">
+                新版框架形成 <strong>“包容审慎、分类分级”</strong> 的治理模式，在鼓励创新与防范风险之间寻求平衡。这是中国 AI 治理体系走向成熟的重要标志，为产业健康发展提供制度保障。
+              </div>
+              <div class="preview-meta">
+                <span>⚖️ 安全治理</span>
+                <span>🛡 分类分级</span>
+                <span>⚙️ 发展安全平衡</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2026.01 -->
+          <div class="htl-item is-down" style="--i:6" tabindex="0">
+            <div class="htl-card">
+              <div class="htl-date">2026.01</div>
+              <div class="htl-title">八部门印发《“人工智能+制造”专项行动实施意见》</div>
+              <div class="htl-desc">提出到 2027 年推动 3-5 个通用大模型在制造业深度应用、推出 1000 个高水平工业智能体。</div>
+            </div>
+            <span class="htl-stem"></span>
+            <span class="htl-dot"></span>
+
+            <!-- 悬停详情 -->
+            <div class="timeline-preview htl-detail">
+              <span class="preview-badge">制造落地</span>
+              <div class="preview-title">“人工智能+制造”专项行动落地</div>
+              <div class="preview-detail">
+                八部门联合印发实施意见，提出到 <strong>2027 年推动 3-5 个通用大模型在制造业深度应用</strong>，并推出 <strong>1000 个高水平工业智能体</strong>。这是 AI 赋能实体经济、推动新型工业化的标志性行动。
+              </div>
+              <div class="preview-meta">
+                <span>🏭 智能制造</span>
+                <span>🤖 1000 工业智能体</span>
+                <span>📅 2027 目标</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      </div><!-- /layer-body -->
+    </section>
+
+    <!-- ========== 二级页面 3：承载产业与行业标杆 ========== -->
+    <section class="layer" id="layer3">
+      <div class="layer-head">
+        <span class="layer-num">03</span>
+        <div class="layer-heading">
+          <h2 class="layer-title">承载产业与行业标杆</h2>
+          <p class="layer-sub">
+            左侧为承载新质生产力的三大产业分类，右侧为全部行业标杆卡面：停留或拖动卡面时，左侧同步展开该标杆所属的产业分类。
+          </p>
+        </div>
+      </div>
+
+      <div class="layer-body">
+
+    <!-- ===== 5. 核心承载产业 ===== -->
+    <div class="carrier-split">
+
+      <!-- 左：承载产业分类（方块折叠，点击展开） -->
+      <div class="carrier-col">
+        <div class="col-head"><h3>承载产业分类</h3></div>
+        <div class="carrier-list">
+
+          <article class="carrier-item" data-ind="strategic">
+            <button class="carrier-head" type="button" aria-expanded="false">
+              <span class="carrier-icon">🌟</span>
+              <span class="carrier-texts">
+                <span class="carrier-name">战略性新兴产业</span>
+                <span class="carrier-brief">新质生产力的主阵地</span>
+              </span>
+              <span class="carrier-toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="carrier-body">
+              <p>新能源汽车、光伏风电、储能、生物医药、人工智能、高端装备制造等，是新质生产力<strong>最集中、最活跃</strong>的承载领域。</p>
+              <ul>
+                <li><strong>代表领域：</strong>新能源汽车、光伏风电、储能、生物医药、人工智能、高端装备制造。</li>
+                <li><strong>AI 深度嵌入：</strong>AI 既是人工智能产业本身的核心，也深度赋能自动驾驶、智能运维、AI 制药、智能控制等方向。</li>
+              </ul>
+              <div class="carrier-foot">AI 是战略性新兴产业的<strong>“公共技术底座”</strong>。</div>
+            </div>
+          </article>
+
+          <article class="carrier-item" data-ind="future">
+            <button class="carrier-head" type="button" aria-expanded="false">
+              <span class="carrier-icon">🔮</span>
+              <span class="carrier-texts">
+                <span class="carrier-name">未来产业</span>
+                <span class="carrier-brief">新质生产力的前沿方向</span>
+              </span>
+              <span class="carrier-toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="carrier-body">
+              <p>量子信息、类脑智能、空天深海开发、合成生物、前沿新材料等，代表新质生产力的<strong>前沿探索方向</strong>，是抢占未来竞争制高点的关键。</p>
+              <ul>
+                <li><strong>代表领域：</strong>量子信息、类脑智能、空天深海开发、合成生物、前沿新材料。</li>
+                <li><strong>AI 与未来产业交融：</strong>类脑智能本身就是 AI 的前沿分支；量子计算与 AI 结合催生量子机器学习；AI 加速合成生物与新材料研发。</li>
+              </ul>
+              <div class="carrier-foot">AI 是未来产业最重要的<strong>孵化器与加速器</strong>。</div>
+            </div>
+          </article>
+
+          <article class="carrier-item" data-ind="traditional">
+            <button class="carrier-head" type="button" aria-expanded="false">
+              <span class="carrier-icon">🔄</span>
+              <span class="carrier-texts">
+                <span class="carrier-name">传统产业数字化升级</span>
+                <span class="carrier-brief">新质生产力的重要组成部分</span>
+              </span>
+              <span class="carrier-toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="carrier-body">
+              <p>通过数字化、智能化、绿色化改造，传统产业实现<strong>降本增效、焕发新生</strong>，同样是发展新质生产力的重要内容，而非被抛弃的对象。</p>
+              <ul>
+                <li><strong>改造路径：</strong>数字化 → 智能化 → 绿色化。</li>
+                <li><strong>AI 是核心引擎：</strong>AI 优化工艺参数、预测设备故障、调度生产流程、质检产品缺陷。</li>
+              </ul>
+              <div class="carrier-foot">AI 让传统产业<strong>“老树发新芽”</strong>，是转型为新质生产力的关键路径。</div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="carrier-note">
+          <span class="note-icon">📊</span>
+          <p>三大承载产业共对应 <strong>8 个行业标杆</strong>：战略性新兴产业 2 个、未来产业 2 个、传统产业数字化升级 4 个；右侧为全部标杆卡面。</p>
+        </div>
+      </div>
+
+      <!-- 右：行业标杆（未选分类时展示全部标杆，可拖拽切换） -->
+      <div class="bench-col">
+        <div class="col-head"><h3>行业标杆</h3></div>
+        <div class="bench-panel" id="benchPanel" data-group="all">
+          <div class="bench-group-head">
+            <span class="group-dot"></span>
+            <span id="benchGroupName">全部行业标杆</span>
+            <span class="group-count" id="benchGroupCount">8 个标杆</span>
+          </div>
+
+          <div class="single-card-track bench-track" id="benchTrack" data-dots="dotsBench" data-loop="true">
+              <div class="single-card-item" data-group="strategic">
+                <article class="bench-card">
+                  <div class="bench-media">
+                    <span class="bench-cat"><i></i>战略性新兴产业</span>
+                    <img src="images/p4.jpeg" alt="晶泰科技 AI 自动化药物研发机器人实验室" loading="lazy">
+                  </div>
+                  <div class="bench-body">
+                    <span class="bench-tag">生物医药 · AI 原生</span>
+                    <h4>晶泰科技 · AI 辅助新药研发</h4>
+                    <p>利用 AI 大模型做药物分子筛选与结构预测，是 AI 赋能生物医药的标杆企业。</p>
+                    <ul class="bench-points">
+                      <li><strong>AI 加速分子筛选：</strong>在虚拟空间快速模拟分子结构，筛选潜在有效候选药物。</li>
+                      <li><strong>实验室自动化：</strong>机器人实验平台与 AI 预测闭环迭代，实现“干湿实验”高效协同。</li>
+                      <li>药物前期分子筛选周期<strong>从数年压缩到数月</strong>，底层研发范式被重塑。</li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+              <div class="single-card-item" data-group="strategic">
+                <article class="bench-card">
+                  <div class="bench-media">
+                    <span class="bench-cat"><i></i>战略性新兴产业</span>
+                    <img src="images/p6.png" alt="宁德时代动力电池灯塔工厂自动化产线" loading="lazy">
+                  </div>
+                  <div class="bench-body">
+                    <span class="bench-tag">新能源 · 灯塔工厂</span>
+                    <h4>宁德时代动力电池智能工厂</h4>
+                    <p>新能源战略性新兴产业代表，动力电池灯塔工厂。</p>
+                    <ul class="bench-points">
+                      <li><strong>AI 视觉质检：</strong>全产线 AI 视觉检测电池缺陷，大幅提升良品率与一致性。</li>
+                      <li><strong>AI 工艺优化：</strong>工艺参数实时优化，数字孪生车间与工业互联网协同。</li>
+                      <li>从材料、极片、装配到检测全流程数字化管控，支撑新能源汽车产业快速扩张。</li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+              <div class="single-card-item" data-group="future">
+                <article class="bench-card">
+                  <div class="bench-media">
+                    <span class="bench-cat"><i></i>未来产业</span>
+                    <img src="images/p8.png" alt="上汽“能仔 1 号”人形机器人在动力电池产线作业" loading="lazy">
+                  </div>
+                  <div class="bench-body">
+                    <span class="bench-tag">具身智能 · 工业大模型</span>
+                    <h4>上汽“能仔 1 号”人形机器人</h4>
+                    <p>上汽集团人形机器人“能仔 1 号”落地动力电池产线，依托工业大模型、机器视觉与数字孪生技术，完成电芯抓取、物料上料、质检等工序。</p>
+                    <ul class="bench-points">
+                      <li><strong>具身智能 + 工业大模型：</strong>机器人理解产线任务，自主完成多工序协同作业。</li>
+                      <li><strong>数字孪生 + 机器视觉：</strong>虚实联动调试与在线视觉质检，显著提升产线柔性。</li>
+                      <li><strong>劳动资料升级：</strong>人形机器人成为新型生产工具，产线可快速切换车型与工艺。</li>
+                    </ul>
+                    <div class="bench-foot"><strong>前沿意义：</strong>具身智能正从实验室走向量产产线，是 AI 与制造深度融合的标志性方向。</div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="single-card-item" data-group="future">
+                <article class="bench-card">
+                  <div class="bench-media">
+                    <span class="bench-cat"><i></i>未来产业</span>
+                    <img src="images/p9.jpg" alt="时识科技 Speck 类脑 SoC 芯片" loading="lazy">
+                  </div>
+                  <div class="bench-body">
+                    <span class="bench-tag">类脑智能 · 类脑芯片</span>
+                    <h4>时识科技 Speck™ 类脑 SoC</h4>
+                    <p>全球首款量产感存算一体类脑 SoC，集成动态视觉传感器，内置 32 万脉冲神经元，面向端侧动态视觉场景。</p>
+                    <ul class="bench-points">
+                      <li><strong>感存算一体：</strong>感知、存储、计算集成于单芯片，突破传统架构的功耗与时延瓶颈。</li>
+                      <li><strong>32 万脉冲神经元：</strong>以脉冲神经网络模拟人脑工作机制，实现毫秒级动态视觉响应。</li>
+                      <li><strong>端侧场景：</strong>面向机器人、无人机、智能安防等低功耗实时视觉应用。</li>
+                    </ul>
+                    <div class="bench-foot"><strong>前沿意义：</strong>类脑智能本身就是 AI 的前沿分支，为端侧智能提供全新的算力范式。</div>
+                  </div>
+                </article>
+              </div>
+              <div class="single-card-item" data-group="traditional">
+                <article class="bench-card">
+                  <div class="bench-media">
+                    <span class="bench-cat"><i></i>传统产业数字化升级</span>
+                    <img src="images/p1.png" alt="格力金湾智能工厂工业机械臂自动化生产线，新质生产力智能制造案例" loading="lazy">
+                  </div>
+                  <div class="bench-body">
+                    <span class="bench-tag">高端装备 · 传统制造升级</span>
+                    <h4>格力金湾智能工厂</h4>
+                    <p>工信部首批领航级智能工厂，自研五轴工业母机、工业机器人，打造数字孪生车间。</p>
+                    <ul class="bench-points">
+                      <li><strong>AI 优化加工参数：</strong>车间数据实时采集、动态调优，减少试错与废品，良品率显著提升。</li>
+                      <li><strong>劳动资料升级：</strong>自研高端数控机床替代进口设备，加工效率提升 80%。</li>
+                      <li><strong>劳动者转型：</strong>流水线操作工转为工艺工程师、数字孪生建模与设备运维人员。</li>
+                    </ul>
+                    <div class="bench-foot"><strong>配套小案例 · 吉林化纤：</strong>老纺织企业转型碳纤维新材料，AI 辅助工艺优化与质量检测，碳丝产能全球第一。</div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="single-card-item" data-group="traditional">
+                <article class="bench-card">
+                  <div class="bench-media">
+                    <span class="bench-cat"><i></i>传统产业数字化升级</span>
+                    <img src="images/p2.jpg" alt="抚顺石化炼化厂区，传统石化产业数字化智能化改造" loading="lazy">
+                  </div>
+                  <div class="bench-body">
+                    <span class="bench-tag">能源石化 · 数字化改造</span>
+                    <h4>抚顺石化智能化炼化基地</h4>
+                    <p>上线昆仑 MES 自研生产管控系统，传统石化企业数字化改造的典型案例。</p>
+                    <ul class="bench-points">
+                      <li><strong>AI 优化工艺参数：</strong>全流程能耗、排放实时监控，AI 模型自动寻优。</li>
+                      <li>生产全流程数据打通，统计效率提升 70%，数据准确率提升 40%。</li>
+                    </ul>
+                    <div class="bench-foot"><strong>配套小案例 · 南方电网“大瓦特”：</strong>配网抢修大模型，AI 自动识别故障、调度抢修资源，几分钟定位故障点。</div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="single-card-item" data-group="traditional">
+                <article class="bench-card">
+                  <div class="bench-media">
+                    <span class="bench-cat"><i></i>传统产业数字化升级</span>
+                    <img src="images/p5.webp" alt="上海洋山港自动化码头，无人集卡智慧港口" loading="lazy">
+                  </div>
+                  <div class="bench-body">
+                    <span class="bench-tag">交通物流 · 自动化码头</span>
+                    <h4>上海港无人集卡智慧港口</h4>
+                    <p>上海洋山港自动化码头，全球领先的无人集装箱港口。</p>
+                    <ul class="bench-points">
+                      <li><strong>AI 调度算法：</strong>实时统筹船舶、集装箱、无人车辆，实现全局最优调度。</li>
+                      <li><strong>劳动资料升级：</strong>无人集卡、自动岸桥、自动化轨道吊，5G + 车路协同全程自动化。</li>
+                      <li>码头 24 小时不间断作业，单箱装卸效率持续提升，降低人工安全风险。</li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+
+              <div class="single-card-item" data-group="traditional">
+                <article class="bench-card">
+                  <div class="bench-media">
+                    <span class="bench-cat"><i></i>传统产业数字化升级</span>
+                    <img src="images/p3.jpg" alt="北斗导航无人农机大田作业，智慧农业新质生产力" loading="lazy">
+                  </div>
+                  <div class="bench-body">
+                    <span class="bench-tag">现代农业 · 北斗 + AI 决策</span>
+                    <h4>永城万亩萝卜智慧农场</h4>
+                    <p>河南永城蒋口镇萝卜智慧农场，全链条智慧种植示范基地。</p>
+                    <ul class="bench-points">
+                      <li><strong>AI 数据驱动生产：</strong>依据土壤墒情、气象、作物长势自动精准灌溉、变量施肥，实现“数据种地”。</li>
+                      <li><strong>劳动资料升级：</strong>北斗无人拖拉机、智能水肥一体机、植保无人机、田间传感器实时采集数据。</li>
+                    </ul>
+                    <div class="bench-foot"><strong>配套小案例 · 中粮家佳康智慧养猪场：</strong>AI 巡检机器人与智能饲喂系统，实时监测生猪健康，精准投喂，降低疫病风险。</div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          <div class="dots-container" id="dotsBench"></div>
+        </div>
+      </div>
+    </div>
+
+      </div><!-- /layer-body -->
+    </section>
+
+    <!-- ========== 二级页面 4：AI 作用 · 数据看板 ========== -->
+    <section class="layer" id="layer4">
+      <div class="layer-head">
+        <span class="layer-num">04</span>
+        <div class="layer-heading">
+          <h2 class="layer-title">AI 作用 · 数据看板</h2>
+          <p class="layer-sub">
+            从全球与全国尺度的产业规模、行业渗透、企业采用率与赋能强度等维度，用可视化数据呈现人工智能对新质生产力的作用；标注"公开资料整理"的数值为趋势示意，不作为精确统计口径。
+          </p>
+        </div>
+      </div>
+
+      <div class="layer-body">
+        <div class="board-wrap">
+          <div class="board-stream" aria-hidden="true"></div>
+
+          <div class="board" id="board">
+            <div class="kpi-row">
+              <div class="kpi fx-tilt">
+                <span class="kpi-num" data-target="15.7" data-dec="1" data-unit="万亿美元">0</span>
+                <span class="kpi-label">2030 年 AI 对全球 GDP 的增量贡献（公开资料整理）</span>
+              </div>
+              <div class="kpi fx-tilt">
+                <span class="kpi-num" data-target="80" data-dec="0" data-unit="%">0</span>
+                <span class="kpi-label">2030 年 AI 对全球 GDP 增量的贡献占比（公开资料整理）</span>
+              </div>
+              <div class="kpi fx-tilt">
+                <span class="kpi-num" data-target="42" data-dec="0" data-unit="%">0</span>
+                <span class="kpi-label">中国数字经济占 GDP 比重（公开资料整理）</span>
+              </div>
+              <div class="kpi fx-tilt">
+                <span class="kpi-num" data-target="72" data-dec="0" data-unit="%">0</span>
+                <span class="kpi-label">全球大型企业 AI 采用率（公开资料整理）</span>
+              </div>
+            </div>
+
+            <section class="board-panel">
+              <div class="board-head"><span class="board-dot"></span>AI 赋能作用 · 六维评估</div>
+              <div class="board-chart" id="chartRadar"></div>
+              <div class="board-foot">5 分制评分：由公开资料与本页案例归纳</div>
+            </section>
+
+            <section class="board-panel">
+              <div class="board-head"><span class="board-dot"></span>产业规模趋势 · 中国 vs 全球</div>
+              <div class="board-chart" id="chartTrend"></div>
+              <div class="board-foot">公开资料整理，指数化（2020 = 100）</div>
+            </section>
+
+            <section class="board-panel">
+              <div class="board-head"><span class="board-dot"></span>行业 AI 渗透率</div>
+              <div class="board-chart" id="chartBars"></div>
+              <div class="board-foot">12 个行业的 AI 应用渗透率（%，公开资料整理）</div>
+            </section>
+
+            <section class="board-panel">
+              <div class="board-head"><span class="board-dot"></span>企业 AI 采用率 · 三年变化</div>
+              <div class="board-chart" id="chartAdopt"></div>
+              <div class="board-foot">大／中／小型企业采用率对比（%，公开资料整理）</div>
+            </section>
+
+            <section class="board-panel">
+              <div class="board-head"><span class="board-dot"></span>行业投入增速 vs 渗透率</div>
+              <div class="board-chart" id="chartBubble"></div>
+              <div class="board-foot">气泡大小＝行业 AI 市场规模（示意）</div>
+            </section>
+
+            <section class="board-panel">
+              <div class="board-head"><span class="board-dot"></span>AI 重塑生产力三要素</div>
+              <div class="board-chart" id="chartDonut"></div>
+              <div class="board-foot">贡献占比示意：智能装备与智能体对劳动资料改造最直接</div>
+            </section>
+          </div>
+
+          <div class="board-fx" aria-hidden="true"></div>
+        </div>
+
+        <p class="board-note">数据说明：图表数值由公开资料与页面案例归纳整理，部分为趋势示意，不作为精确统计口径。</p>
+      </div>
+    </section>
+
+    <!-- ========== 二级页面 5：总结 ========== -->
+    <section class="layer" id="layer5">
+      <div class="layer-head">
+        <span class="layer-num">05</span>
+        <div class="layer-heading">
+          <h2 class="layer-title">总结</h2>
+          <p class="layer-sub">
+            新质生产力的核心逻辑，是以创新破局、以质量增效、以科技赋能产业；人工智能是其中的核心引擎与战略抓手。
+          </p>
+        </div>
+      </div>
+
+      <div class="layer-body">
+
+        <!-- 滚轮播放：总结要点（与 01 页同样的弹幕汇聚效果） -->
+        <div class="stage" id="sumStage">
+          <div class="stage-drawer">
+            <button class="stage-handle" type="button" aria-label="展开步骤菜单">
+              <span class="handle-num">01</span>
+              <span class="handle-icon">›</span>
+            </button>
+            <div class="stage-rail">
+              <button class="stage-step is-active" type="button"><span class="step-num">01</span><span class="step-name">核心逻辑</span></button>
+              <button class="stage-step" type="button"><span class="step-num">02</span><span class="step-name">技术源头</span></button>
+              <button class="stage-step" type="button"><span class="step-num">03</span><span class="step-name">要素重构</span></button>
+              <button class="stage-step" type="button"><span class="step-num">04</span><span class="step-name">产业赋能</span></button>
+              <button class="stage-step" type="button"><span class="step-num">05</span><span class="step-name">核心结论</span></button>
+            </div>
+          </div>
+
+          <div class="stage-view">
+            <!-- 01 -->
+            <article class="stage-slide is-active">
+              <span class="slide-tag">总结 · 核心逻辑</span>
+              <h3>以创新破局、以质量增效、以科技赋能产业</h3>
+              <p class="slide-lead">新质生产力摆脱了传统粗放式发展的局限，通过<strong>技术、要素、产业的全方位升级</strong>，为经济高质量发展提供核心支撑。</p>
+              <ul class="slide-points">
+                <li><strong>创新破局：</strong>以科技创新替代资源投入，破解传统增长模式的效率瓶颈。</li>
+                <li><strong>质量增效：</strong>从“有没有”到“好不好”，聚焦产品质量、产业层级与发展效益。</li>
+                <li><strong>科技赋能产业：</strong>技术突破、要素配置、产业转型三条路径同步升级。</li>
+              </ul>
+            </article>
+
+            <!-- 02 -->
+            <article class="stage-slide">
+              <span class="slide-tag">AI 的角色 · 一</span>
+              <h3>技术源头</h3>
+              <p class="slide-lead">AI 是新质生产力的<strong>技术源头</strong>——大模型、深度学习、智能算法持续突破，为生产力跃升提供原创性技术供给。</p>
+              <div class="slide-foot">没有原创技术的持续突破，就没有新质生产力“新”的根基。</div>
+            </article>
+
+            <!-- 03 -->
+            <article class="stage-slide">
+              <span class="slide-tag">AI 的角色 · 二</span>
+              <h3>要素重构的关键</h3>
+              <p class="slide-lead">AI 激活数据要素价值、以智能体替代重复劳动，重组<strong>劳动者、劳动资料、劳动对象</strong>，推动全要素生产率提升。</p>
+              <div class="slide-foot">“数据 + AI”正在成为新质生产力最重要的要素组合。</div>
+            </article>
+
+            <!-- 04 -->
+            <article class="stage-slide">
+              <span class="slide-tag">AI 的角色 · 三</span>
+              <h3>产业升级的通用赋能技术</h3>
+              <p class="slide-lead">从制造到医疗、从农业到物流，AI 作为通用技术<strong>全渗透</strong>，以“头雁效应”带动产业体系整体跃升。</p>
+              <div class="slide-foot">AI 是当前最核心、最活跃的新质生产力代表。</div>
+            </article>
+
+            <!-- 05 -->
+            <article class="stage-slide">
+              <span class="slide-tag">核心结论</span>
+              <h3>把握 AI，就是把握新质生产力的未来</h3>
+              <p class="slide-lead">AI 既是新质生产力的<strong>技术源头</strong>，也是<strong>要素重构的关键</strong>，更是<strong>产业升级的通用赋能技术</strong>。</p>
+              <ul class="slide-points">
+                <li>没有 AI 的深度参与，就没有真正意义上的新质生产力。</li>
+                <li>AI 不是可有可无的辅助，而是新质生产力的核心引擎与战略抓手。</li>
+                <li>以 AI 为支点，带动技术、要素、产业的全方位跃升。</li>
+              </ul>
+            </article>
+
+            <div class="stage-progress"><i></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+      人工智能 ——新质生产力的核心
+    </div>
+  </div>
+
+  <!-- 可视化库：本地引入，离线可用 -->
+  <script src="lib/d3.min.js"></script>
+  <script src="lib/p5.min.js"></script>
+
+  <script>
+const cardTrackAPI = {};
+  </script>
+  <script>
+    (function() {
+      // ========== 单卡拖拽 + 圆点指示器 ==========
+      const tracks = Array.prototype.slice.call(document.querySelectorAll('.single-card-track')).map(function(track) {
+        const dots = document.getElementById(track.dataset.dots || '');
+        if (dots) track.__dots = dots;
+        return track;
+      }).filter(function(track) {
+        return !!track.__dots;
+      });
+
+      function isLoop(track) {
+        return track.dataset.loop === 'true';
+      }
+
+      function logicalItems(track) {
+        return Array.prototype.slice.call(track.querySelectorAll('.single-card-item')).filter(function(item) {
+          return !item.classList.contains('is-clone') && !item.classList.contains('is-hidden');
+        });
+      }
+
+      function itemWidthOf(track) {
+        const items = logicalItems(track);
+        return (items[0] && items[0].offsetWidth) || track.clientWidth || 1;
+      }
+
+      // 瞬时定位（避免 scroll-behavior: smooth 让循环跳转产生动画）
+      function jumpTo(track, value) {
+        const prev = track.style.scrollBehavior;
+        track.style.scrollBehavior = 'auto';
+        track.scrollLeft = value;
+        track.style.scrollBehavior = prev || '';
+      }
+
+      // 循环轨道：前后各复制一份卡面，实现无限拖拽
+      function setupLoop(track) {
+        if (!isLoop(track) || track.__looped) return;
+        const originals = Array.prototype.slice.call(track.querySelectorAll('.single-card-item'));
+        if (originals.length < 2) return;
+
+        const before = document.createDocumentFragment();
+        const after = document.createDocumentFragment();
+        originals.forEach(function(item) {
+          const pre = item.cloneNode(true);
+          pre.classList.add('is-clone');
+          pre.setAttribute('aria-hidden', 'true');
+          before.appendChild(pre);
+
+          const post = item.cloneNode(true);
+          post.classList.add('is-clone');
+          post.setAttribute('aria-hidden', 'true');
+          after.appendChild(post);
+        });
+        track.insertBefore(before, track.firstChild);
+        track.appendChild(after);
+
+        track.__looped = true;
+        jumpTo(track, originals.length * itemWidthOf(track));
+      }
+
+      function setActiveDot(dotsContainer, index) {
+        if (!dotsContainer) return;
+        Array.prototype.forEach.call(dotsContainer.querySelectorAll('.dot'), function(dot, i) {
+          dot.classList.toggle('active', i === index);
+        });
+      }
+
+      function updateDotsFromScroll(track) {
+        const dotsContainer = track.__dots;
+        if (!dotsContainer) return;
+        const items = logicalItems(track);
+        if (!items.length) return;
+
+        const itemWidth = itemWidthOf(track);
+        let activeIndex = Math.round(track.scrollLeft / itemWidth);
+
+        if (isLoop(track)) {
+          const count = items.length;
+          if (activeIndex < count) {
+            jumpTo(track, track.scrollLeft + count * itemWidth);
+            activeIndex += count;
+          } else if (activeIndex >= count * 2) {
+            jumpTo(track, track.scrollLeft - count * itemWidth);
+            activeIndex -= count;
+          }
+          setActiveDot(dotsContainer, activeIndex % count);
+          return;
+        }
+
+        activeIndex = Math.max(0, Math.min(activeIndex, items.length - 1));
+        setActiveDot(dotsContainer, activeIndex);
+      }
+
+      function buildDots(track) {
+        const dotsContainer = track.__dots;
+        if (!dotsContainer) return;
+        const items = logicalItems(track);
+        dotsContainer.innerHTML = '';
+
+        items.forEach(function(item, index) {
+          const dot = document.createElement('span');
+          dot.className = 'dot' + (index === 0 ? ' active' : '');
+          dot.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const itemWidth = itemWidthOf(track);
+            const target = isLoop(track) ? (items.length + index) * itemWidth : index * itemWidth;
+            track.scrollTo({ left: target, behavior: 'smooth' });
+            setActiveDot(dotsContainer, index);
+          });
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      // 重新生成圆点并回到第一张（循环轨道回到中间那一份）
+      function resetTrack(track) {
+        if (!track) return;
+        jumpTo(track, isLoop(track) ? logicalItems(track).length * itemWidthOf(track) : 0);
+        buildDots(track);
+        setActiveDot(track.__dots, 0);
+      }
+
+      cardTrackAPI.reset = resetTrack;
+      cardTrackAPI.sync = updateDotsFromScroll;
+
+      function addScrollListener(track) {
+        if (!track) return;
+        let ticking = false;
+        track.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              updateDotsFromScroll(track);
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+        track.addEventListener('touchend', () => {
+          setTimeout(() => updateDotsFromScroll(track), 100);
+        });
+        track.addEventListener('mouseup', () => {
+          setTimeout(() => updateDotsFromScroll(track), 50);
+        });
+      }
+
+      function enableDragScroll(trackElement) {
+        if (!trackElement) return;
+
+        let isDown = false;
+        let startX = 0;
+        let scrollStart = 0;
+
+        trackElement.addEventListener('mousedown', (e) => {
+          isDown = true;
+          startX = e.pageX - trackElement.offsetLeft;
+          scrollStart = trackElement.scrollLeft;
+          e.preventDefault();
+        });
+
+        trackElement.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - trackElement.offsetLeft;
+          const walk = (x - startX) * 1.2;
+          trackElement.scrollLeft = scrollStart - walk;
+        });
+
+        const stopDrag = () => {
+          isDown = false;
+        };
+
+        trackElement.addEventListener('mouseup', stopDrag);
+        trackElement.addEventListener('mouseleave', stopDrag);
+        trackElement.addEventListener('dragstart', (e) => e.preventDefault());
+      }
+
+      tracks.forEach(function(track) {
+        setupLoop(track);
+        buildDots(track);
+        addScrollListener(track);
+        enableDragScroll(track);
+      });
+
+      window.addEventListener('resize', function() {
+        tracks.forEach(function(track) { updateDotsFromScroll(track); });
+      });
+    })();
+
+    // ========== 第二层：时间轴节点（点击固定展开详情） ==========
+    (function() {
+      const items = Array.prototype.slice.call(document.querySelectorAll('.htl-item'));
+      if (!items.length) return;
+
+      items.forEach(function(item) {
+        item.addEventListener('click', function() {
+          const wasOpen = item.classList.contains('is-open');
+          items.forEach(function(other) { other.classList.remove('is-open'); });
+          if (!wasOpen) item.classList.add('is-open');
+        });
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+            e.preventDefault();
+            item.click();
+          }
+        });
+      });
+    })();
+
+    // ========== 第三层：左侧产业分类 ⇄ 右侧行业标杆（双向联动） ==========
+    (function() {
+      const list = document.querySelector('.carrier-list');
+      const track = document.getElementById('benchTrack');
+      if (!list || !track) return;
+
+      const carriers = Array.prototype.slice.call(list.querySelectorAll('.carrier-item'));
+      const cards = Array.prototype.slice.call(track.querySelectorAll('.single-card-item:not(.is-clone)'));
+      const panel = document.getElementById('benchPanel');
+      const nameEl = document.getElementById('benchGroupName');
+      const countEl = document.getElementById('benchGroupCount');
+      if (!cards.length) return;
+
+      const LABELS = {
+        strategic: '战略性新兴产业',
+        future: '未来产业',
+        traditional: '传统产业数字化升级'
+      };
+
+      let programmatic = false;   // 程序化滑动中，暂停回读
+      let settleTimer = null;
+
+      function cardWidth() {
+        return cards[0].offsetWidth || track.clientWidth || 1;
+      }
+
+      function currentIndex() {
+        const count = cards.length || 1;
+        const raw = Math.round(track.scrollLeft / cardWidth());
+        return ((raw % count) + count) % count;
+      }
+
+      function countOf(key) {
+        return cards.filter(function(card) { return card.dataset.group === key; }).length;
+      }
+
+      function firstIndexOf(key) {
+        for (let i = 0; i < cards.length; i++) {
+          if (cards[i].dataset.group === key) return i;
+        }
+        return 0;
+      }
+
+      // 只更新左侧展开态与标题计数，不移动滚动条
+      function paint(key) {
+        carriers.forEach(function(item) {
+          const isOpen = item.dataset.ind === key;
+          item.classList.toggle('is-open', isOpen);
+          const head = item.querySelector('.carrier-head');
+          if (head) head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        if (panel) panel.dataset.group = key || 'all';
+        if (nameEl) nameEl.textContent = key ? LABELS[key] : '全部行业标杆';
+        if (countEl) countEl.textContent = (key ? countOf(key) : cards.length) + ' 个标杆';
+      }
+
+      // 点击左侧分类：展开该分类，右侧滑动到该分类的第一个标杆
+      function focusGroup(key) {
+        paint(key);
+        programmatic = true;
+        // 循环轨道：定位到中间那一份拷贝，保证两侧都能继续循环
+        const target = (cards.length + firstIndexOf(key)) * cardWidth();
+        track.scrollTo({ left: target, behavior: 'smooth' });
+        if (settleTimer) clearTimeout(settleTimer);
+        settleTimer = setTimeout(function() { programmatic = false; }, 700);
+      }
+
+      // 右侧停留：左侧展开当前卡面所属的产业分类
+      track.addEventListener('scroll', function() {
+        if (settleTimer) clearTimeout(settleTimer);
+        settleTimer = setTimeout(function() {
+          if (programmatic) { programmatic = false; return; }
+          const card = cards[currentIndex()];
+          if (card) paint(card.dataset.group);
+        }, 150);
+      });
+
+      carriers.forEach(function(item) {
+        const head = item.querySelector('.carrier-head');
+        if (!head) return;
+        head.addEventListener('click', function() {
+          const key = item.dataset.ind;
+          if (item.classList.contains('is-open')) {
+            paint(null);            // 再次点击：全部折叠
+          } else {
+            focusGroup(key);
+          }
+        });
+      });
+
+      // 初始化：圆点按全部卡面重建，左侧同步第一张卡面所属分类
+      if (cardTrackAPI.reset) cardTrackAPI.reset(track);
+      paint(cards[currentIndex()].dataset.group);
+    })();
+
+    // ========== 二级页面 1 / 4：滚轮逐屏播放关键信息（弹幕汇聚） ==========
+    (function() {
+      const stages = Array.prototype.slice.call(document.querySelectorAll('.stage'));
+      if (!stages.length) return;
+
+      stages.forEach(function(stage) {
+        const slides = Array.prototype.slice.call(stage.querySelectorAll('.stage-slide'));
+        const steps = Array.prototype.slice.call(stage.querySelectorAll('.stage-step'));
+        const bar = stage.querySelector('.stage-progress i');
+        const handleNum = stage.querySelector('.handle-num');
+        if (!slides.length) return;
+
+        let index = 0;
+        let locked = false;
+
+        function render(next) {
+          index = Math.max(0, Math.min(next, slides.length - 1));
+          slides.forEach(function(slide, i) {
+            slide.classList.toggle('is-active', i === index);
+          });
+          steps.forEach(function(step, i) {
+            step.classList.toggle('is-active', i === index);
+          });
+          if (handleNum) handleNum.textContent = ('0' + (index + 1)).slice(-2);
+          if (bar) bar.style.width = (((index + 1) / slides.length) * 100) + '%';
+
+          // 通知 p5 弹幕粒子画布：该屏开始播放
+          stage.dispatchEvent(new CustomEvent('stage:slide', {
+            detail: { index: index, slide: slides[index] }
+          }));
+        }
+
+        function goStep(delta) {
+          locked = true;
+          window.setTimeout(function() { locked = false; }, 460);
+          render(index + delta);
+        }
+
+        // 滚轮：在本页面内逐屏播放；到底/到顶后放行页面滚动
+        stage.addEventListener('wheel', function(e) {
+          if (Math.abs(e.deltaY) < 4) return;
+          const down = e.deltaY > 0;
+          if (down && index >= slides.length - 1) return;
+          if (!down && index <= 0) return;
+
+          e.preventDefault();
+          if (locked) return;
+          goStep(down ? 1 : -1);
+        }, { passive: false });
+
+        // 键盘：上下方向键 / PageUp、PageDown
+        stage.addEventListener('keydown', function(e) {
+          const down = (e.key === 'ArrowDown' || e.key === 'PageDown');
+          const up = (e.key === 'ArrowUp' || e.key === 'PageUp');
+          if (!down && !up) return;
+          if (down && index >= slides.length - 1) return;
+          if (up && index <= 0) return;
+          e.preventDefault();
+          if (locked) return;
+          goStep(down ? 1 : -1);
+        });
+
+        steps.forEach(function(btn, i) {
+          btn.addEventListener('click', function() { render(i); });
+        });
+
+        render(0);
+      });
+    })();
+
+    // ========== D3：国家战略时间轴（SVG 轴 / 节点 / 脉冲） ==========
+    (function() {
+      if (typeof d3 === 'undefined') return;
+
+      const wrap = document.querySelector('.htimeline');
+      const track = wrap && wrap.querySelector('.htl-track');
+      if (!wrap || !track) return;
+
+      const items = Array.prototype.slice.call(track.querySelectorAll('.htl-item'));
+      if (!items.length) return;
+
+      wrap.classList.add('d3-ready');
+
+      const svg = d3.select(wrap).insert('svg', ':first-child').attr('class', 'htl-svg');
+      const grad = svg.append('defs').append('linearGradient')
+        .attr('id', 'htlAxisGrad')
+        .attr('x1', '0%').attr('y1', '0%').attr('x2', '100%').attr('y2', '0%');
+
+      [[0, '#c4b5fd', 0.45], [0.12, '#8b5cf6', 1], [0.5, '#7c3aed', 1], [0.88, '#8b5cf6', 1], [1, '#c4b5fd', 0.45]]
+        .forEach(function(stop) {
+          grad.append('stop')
+            .attr('offset', (stop[0] * 100) + '%')
+            .attr('stop-color', stop[1])
+            .attr('stop-opacity', stop[2]);
+        });
+
+      const axis = svg.append('rect').attr('rx', 3).attr('fill', 'url(#htlAxisGrad)');
+      const pulse = svg.append('circle').attr('r', 5).attr('fill', '#7c3aed').attr('opacity', 0);
+      const stemsG = svg.append('g');
+      const nodesG = svg.append('g');
+
+      let geo = [];
+      let hovered = null;
+      let midY = 0;
+      let padX = 0;
+      let width = 0;
+      let pulseT = null;
+      let layoutTimer = null;
+
+      function nodeState(i) {
+        return (items[i] === hovered || items[i].classList.contains('is-open'));
+      }
+
+      function drawNodes() {
+        nodesG.selectAll('circle').data(geo)
+          .join('circle')
+          .attr('cx', function(d) { return d.cx; })
+          .attr('cy', midY)
+          .attr('r', function(d) { return nodeState(d.i) ? 9.5 : 7.5; })
+          .attr('fill', function(d) { return nodeState(d.i) ? '#8b5cf6' : '#ffffff'; })
+          .attr('stroke', '#8b5cf6')
+          .attr('stroke-width', 3);
+      }
+
+      function updateNodes() {
+        nodesG.selectAll('circle')
+          .transition().duration(180)
+          .attr('r', function(d) { return nodeState(d.i) ? 9.5 : 7.5; })
+          .attr('fill', function(d) { return nodeState(d.i) ? '#8b5cf6' : '#ffffff'; });
+      }
+
+      function startPulse() {
+        if (pulseT) pulseT.interrupt();
+        if (!width) return;
+
+        function loop() {
+          pulse.attr('cx', padX).attr('cy', midY).attr('opacity', 0);
+          pulseT = pulse
+            .transition().duration(420).attr('opacity', 0.85)
+            .transition().duration(5200).ease(d3.easeSinInOut).attr('cx', width - padX)
+            .transition().duration(420).attr('opacity', 0)
+            .on('end', loop);
+        }
+        loop();
+      }
+
+      // 卡片沿轴两侧错峰入场
+      function playCards() {
+        track.classList.add('is-animating');
+        d3.select(track).selectAll('.htl-card')
+          .style('opacity', 0)
+          .style('transform', function() {
+            return 'translateY(' + (this.parentNode.classList.contains('is-up') ? '30px' : '-30px') + ') scale(0.96)';
+          })
+          .transition()
+          .delay(function(d, i) { return i * 90; })
+          .duration(560)
+          .ease(d3.easeCubicOut)
+          .style('opacity', 1)
+          .style('transform', 'none')
+          .on('end', function() {});
+
+        window.setTimeout(function() {
+          track.classList.remove('is-animating');
+          // 兜底：确保卡片最终可见
+          d3.select(track).selectAll('.htl-card')
+            .style('opacity', 1)
+            .style('transform', 'none');
+        }, items.length * 90 + 700);
+      }
+
+      function layout(animate) {
+        width = track.clientWidth || wrap.clientWidth;
+        const height = track.clientHeight || wrap.clientHeight;
+        if (!width || !height) return;
+
+        svg.attr('viewBox', '0 0 ' + width + ' ' + height).attr('width', width).attr('height', height);
+
+        midY = height / 2;
+        padX = Math.max(12, width * 0.02);
+
+        axis.attr('x', padX).attr('y', midY - 1.5)
+          .attr('width', Math.max(0, width - padX * 2))
+          .attr('height', 3);
+
+        geo = items.map(function(el, i) {
+          return { i: i, cx: el.offsetLeft + el.offsetWidth / 2, up: el.classList.contains('is-up') };
+        });
+
+        stemsG.selectAll('line').data(geo)
+          .join('line')
+          .attr('x1', function(d) { return d.cx; })
+          .attr('x2', function(d) { return d.cx; })
+          .attr('y1', midY)
+          .attr('y2', function(d) { return midY + (d.up ? -36 : 36); })
+          .attr('stroke', 'rgba(139, 92, 246, 0.35)')
+          .attr('stroke-width', 2);
+
+        drawNodes();
+        startPulse();
+        if (animate) playCards();
+      }
+
+      items.forEach(function(el) {
+        el.addEventListener('mouseenter', function() { hovered = el; updateNodes(); });
+        el.addEventListener('mouseleave', function() { hovered = null; updateNodes(); });
+        el.addEventListener('focus', function() { hovered = el; updateNodes(); });
+        el.addEventListener('blur', function() { hovered = null; updateNodes(); });
+        el.addEventListener('click', function() { hovered = el; updateNodes(); });
+      });
+
+      window.addEventListener('resize', function() {
+        if (layoutTimer) clearTimeout(layoutTimer);
+        layoutTimer = setTimeout(function() { layout(false); }, 160);
+      });
+
+      const tab = document.querySelector('.subnav-item[data-target="layer2"]');
+      if (tab) {
+        tab.addEventListener('click', function() {
+          setTimeout(function() { layout(true); }, 90);
+        });
+      }
+
+      const layer2 = document.getElementById('layer2');
+      if (layer2 && layer2.classList.contains('is-open')) layout(true);
+    })();
+
+    // ========== D3：AI 作用数据看板（04 页） ==========
+    (function() {
+      if (typeof d3 === 'undefined') return;
+
+      const board = document.querySelector('.board');
+      if (!board) return;
+
+      const hostRadar = document.getElementById('chartRadar');
+      const hostDonut = document.getElementById('chartDonut');
+      const hostBars = document.getElementById('chartBars');
+      const hostTrend = document.getElementById('chartTrend');
+      const hostAdopt = document.getElementById('chartAdopt');
+      const hostBubble = document.getElementById('chartBubble');
+      if (!hostRadar || !hostDonut || !hostBars || !hostTrend || !hostAdopt || !hostBubble) return;
+
+      const C = {
+        blue: '#2e7d9e',
+        purple: '#7c3aed',
+        teal: '#0f766e',
+        grid: '#e2ecf5',
+        ink: '#0f2a3b',
+        muted: '#5b7691'
+      };
+
+      const radarData = [
+        { k: '效率提升', v: 4.6 },
+        { k: '质量提升', v: 4.4 },
+        { k: '创新加速', v: 4.8 },
+        { k: '成本优化', v: 4.0 },
+        { k: '要素激活', v: 4.5 },
+        { k: '产业带动', v: 4.7 }
+      ];
+
+      const donutData = [
+        { k: '劳动资料升级', v: 40, c: C.purple },
+        { k: '劳动者升级', v: 32, c: C.blue },
+        { k: '劳动对象升级', v: 28, c: C.teal }
+      ];
+
+      // 行业 AI 渗透率（%，公开资料整理示意）
+      const penetration = [
+        { k: '互联网与软件', v: 78 },
+        { k: '金融保险', v: 66 },
+        { k: '零售电商', v: 61 },
+        { k: '智能制造', v: 58 },
+        { k: '政务与公共服务', v: 52 },
+        { k: '医疗健康', v: 47 },
+        { k: '交通物流', v: 44 },
+        { k: '教育', v: 41 },
+        { k: '能源电力', v: 39 },
+        { k: '文旅', v: 33 },
+        { k: '农业', v: 27 },
+        { k: '建筑', v: 25 }
+      ];
+
+      // 企业 AI 采用率（%）：2023 → 2025
+      const adoptData = [
+        { k: '大型企业', v: [58, 76] },
+        { k: '中型企业', v: [39, 58] },
+        { k: '小型企业', v: [22, 37] }
+      ];
+      const adoptYears = ['2023', '2025'];
+      const adoptColors = [C.blue, C.purple];
+
+      // 行业：渗透率 × 投入增速 × 市场规模（气泡大小示意）
+      const bubbleData = [
+        { k: '制造', x: 58, y: 31, r: 46 },
+        { k: '金融', x: 66, y: 24, r: 40 },
+        { k: '医疗', x: 47, y: 38, r: 30 },
+        { k: '物流', x: 44, y: 33, r: 26 },
+        { k: '能源', x: 39, y: 29, r: 24 },
+        { k: '教育', x: 41, y: 27, r: 18 },
+        { k: '农业', x: 27, y: 45, r: 16 }
+      ];
+
+      // 产业规模指数（2020 = 100）
+      const trendYears = ['2020', '2021', '2022', '2023', '2024', '2025'];
+      const trendSeries = [
+        { name: '中国 AI 核心产业', c: '#7c3aed', values: [100, 132, 171, 218, 268, 322] },
+        { name: '全球 AI 市场', c: '#2e7d9e', values: [100, 128, 165, 215, 275, 348] }
+      ];
+
+      // 图表悬浮提示
+      const tip = document.createElement('div');
+      tip.className = 'viz-tip';
+      document.body.appendChild(tip);
+
+      function moveTip(ev) {
+        const x = Math.min(window.innerWidth - tip.offsetWidth - 12, ev.clientX + 14);
+        const y = Math.max(8, ev.clientY - tip.offsetHeight - 14);
+        tip.style.left = Math.max(8, x) + 'px';
+        tip.style.top = y + 'px';
+      }
+
+      function bindTip(sel, text) {
+        sel.style('cursor', 'pointer')
+          .on('pointerenter', function(ev, d) {
+            tip.textContent = text(d);
+            tip.classList.add('is-on');
+            moveTip(ev);
+            if (board) {
+              board.dispatchEvent(new CustomEvent('board:hover', {
+                detail: { x: ev.clientX, y: ev.clientY }
+              }));
+            }
+          })
+          .on('pointermove', function(ev) { moveTip(ev); })
+          .on('pointerleave', function() { tip.classList.remove('is-on'); });
+      }
+
+      function base(host, height) {
+        const w = host.clientWidth || 460;
+        return d3.select(host).html('').append('svg')
+          .attr('viewBox', '0 0 ' + w + ' ' + height)
+          .attr('width', '100%')
+          .attr('height', height);
+      }
+
+      // ---------- 1. 雷达图：五维赋能作用 ----------
+      function drawRadar() {
+        const h = 190;
+        const svg = base(hostRadar, h);
+        const w = hostRadar.clientWidth || 460;
+        const cx = w / 2;
+        const cy = h / 2 + 4;
+        const R = Math.min(w, h) / 2 - 30;
+        const n = radarData.length;
+        const ring = 4;
+        const ang = function(i) { return -Math.PI / 2 + i * Math.PI * 2 / n; };
+
+        for (let level = 1; level <= ring; level++) {
+          const rr = R * level / ring;
+          svg.append('polygon')
+            .attr('points', d3.range(n).map(function(i) {
+              return (cx + Math.cos(ang(i)) * rr) + ',' + (cy + Math.sin(ang(i)) * rr);
+            }).join(' '))
+            .attr('fill', level === ring ? '#f7fbfe' : 'none')
+            .attr('stroke', C.grid)
+            .attr('stroke-width', 1);
+        }
+
+        radarData.forEach(function(d, i) {
+          svg.append('line')
+            .attr('x1', cx).attr('y1', cy)
+            .attr('x2', cx + Math.cos(ang(i)) * R)
+            .attr('y2', cy + Math.sin(ang(i)) * R)
+            .attr('stroke', C.grid);
+          svg.append('text')
+            .attr('x', cx + Math.cos(ang(i)) * (R + 20))
+            .attr('y', cy + Math.sin(ang(i)) * (R + 16))
+            .attr('text-anchor', 'middle')
+            .attr('dominant-baseline', 'middle')
+            .attr('font-size', 10.5)
+            .attr('fill', C.muted)
+            .text(d.k);
+        });
+
+        const pts = radarData.map(function(d, i) {
+          const rr = R * d.v / 5;
+          return [cx + Math.cos(ang(i)) * rr, cy + Math.sin(ang(i)) * rr];
+        });
+
+        const shape = svg.append('polygon')
+          .attr('points', pts.map(function(p) { return p.join(','); }).join(' '))
+          .attr('fill', 'rgba(124, 58, 237, 0.16)')
+          .attr('stroke', C.purple)
+          .attr('stroke-width', 2)
+          .attr('opacity', 0);
+        shape.transition().duration(680).ease(d3.easeCubicOut).attr('opacity', 1);
+        window.setTimeout(function() { shape.attr('opacity', 1); }, 1400);
+
+        pts.forEach(function(p, i) {
+          svg.append('circle')
+            .datum(radarData[i])
+            .attr('class', 'radar-dot')
+            .attr('cx', p[0]).attr('cy', p[1]).attr('r', 3.4)
+            .attr('fill', '#ffffff').attr('stroke', C.purple).attr('stroke-width', 2);
+          svg.append('text')
+            .attr('x', p[0]).attr('y', p[1] - 8)
+            .attr('text-anchor', 'middle').attr('font-size', 9.5)
+            .attr('fill', C.purple).attr('font-weight', 600)
+            .text(radarData[i].v.toFixed(1));
+        });
+
+        bindTip(svg.selectAll('.radar-dot'), function(d) {
+          return d.k + '：' + d.v.toFixed(1) + ' / 5';
+        });
+      }
+
+      // ---------- 2. 环形图：三要素重塑 ----------
+      function drawDonut() {
+        const h = 190;
+        const svg = base(hostDonut, h);
+        const w = hostDonut.clientWidth || 460;
+        const cx = Math.min(w * 0.34, 150);
+        const cy = h / 2;
+        const R = Math.min(h / 2 - 14, 74);
+        const r0 = R * 0.6;
+
+        const pie = d3.pie().value(function(d) { return d.v; }).sort(null);
+        const arc = d3.arc().innerRadius(r0).outerRadius(R).cornerRadius(4);
+        const g = svg.append('g').attr('transform', 'translate(' + cx + ',' + cy + ')');
+
+        const slices = g.selectAll('path').data(pie(donutData)).join('path')
+          .attr('d', arc)
+          .attr('fill', function(d) { return d.data.c; })
+          .attr('opacity', 0);
+        slices.transition().duration(700).delay(function(d, i) { return i * 130; })
+          .attr('opacity', 0.92);
+        window.setTimeout(function() { slices.attr('opacity', 0.92); }, 1500);
+        bindTip(slices, function(d) { return d.data.k + '：' + d.data.v + '%'; });
+
+        g.append('text')
+          .attr('text-anchor', 'middle').attr('y', -2)
+          .attr('font-size', 19).attr('font-weight', 700).attr('fill', C.purple)
+          .text('AI');
+        g.append('text')
+          .attr('text-anchor', 'middle').attr('y', 17)
+          .attr('font-size', 10.5).attr('fill', C.muted)
+          .text('重塑三要素');
+
+        const legend = svg.append('g').attr('transform', 'translate(' + (cx + R + 26) + ',' + (cy - 30) + ')');
+        donutData.forEach(function(d, i) {
+          const row = legend.append('g').attr('transform', 'translate(0,' + (i * 30) + ')');
+          row.append('rect').attr('width', 10).attr('height', 10).attr('rx', 3).attr('fill', d.c);
+          row.append('text').attr('x', 16).attr('y', 9).attr('font-size', 11).attr('fill', C.ink).text(d.k);
+          row.append('text').attr('x', 104).attr('y', 9).attr('font-size', 11).attr('fill', C.muted).text(d.v + '%');
+        });
+      }
+
+      // ---------- 3. 行业 AI 渗透率（12 个行业） ----------
+      function drawBars() {
+        const h = 190;
+        const svg = base(hostBars, h);
+        const w = hostBars.clientWidth || 340;
+        const m = { top: 2, right: 26, bottom: 2, left: 88 };
+
+        const x = d3.scaleLinear().domain([0, 100]).range([m.left, w - m.right]);
+        const y = d3.scaleBand().domain(penetration.map(function(d) { return d.k; }))
+          .range([m.top, h - m.bottom]).padding(0.3);
+
+        const rows = svg.append('g').selectAll('g').data(penetration).join('g');
+
+        rows.append('text')
+          .attr('x', m.left - 6)
+          .attr('y', function(d) { return y(d.k) + y.bandwidth() / 2 + 3.2; })
+          .attr('text-anchor', 'end')
+          .attr('font-size', 9)
+          .attr('fill', C.muted)
+          .text(function(d) { return d.k; });
+
+        rows.append('rect')
+          .attr('x', m.left)
+          .attr('y', function(d) { return y(d.k); })
+          .attr('width', Math.max(0, w - m.right - m.left))
+          .attr('height', y.bandwidth())
+          .attr('rx', 3)
+          .attr('fill', '#f2f7fb');
+
+        const bars = rows.append('rect')
+          .attr('x', m.left)
+          .attr('y', function(d) { return y(d.k); })
+          .attr('height', y.bandwidth())
+          .attr('rx', 3)
+          .attr('fill', function(d, i) { return i < 3 ? C.purple : (i < 8 ? C.blue : C.teal); })
+          .attr('opacity', 0.88)
+          .attr('width', 0);
+
+        bars.transition().duration(700).delay(function(d, i) { return i * 45; }).ease(d3.easeCubicOut)
+          .attr('width', function(d) { return Math.max(0, x(d.v) - m.left); });
+
+        const labels = rows.append('text')
+          .attr('x', function(d) { return x(d.v) + 5; })
+          .attr('y', function(d) { return y(d.k) + y.bandwidth() / 2 + 3.2; })
+          .attr('font-size', 8.6)
+          .attr('fill', C.ink)
+          .attr('opacity', 0)
+          .text(function(d) { return d.v + '%'; });
+
+        labels.transition().delay(function(d, i) { return 200 + i * 45; }).duration(280).attr('opacity', 1);
+
+        window.setTimeout(function() {
+          bars.attr('width', function(d) { return Math.max(0, x(d.v) - m.left); });
+          labels.attr('opacity', 1);
+        }, 1700);
+
+        bindTip(bars, function(d) { return d.k + '：AI 渗透率 ' + d.v + '%'; });
+      }
+      // ---------- 4. 双序列趋势：中国 AI 核心产业 vs 全球 AI 市场 ----------
+      function drawTrend() {
+        const h = 190;
+        const svg = base(hostTrend, h);
+        const w = hostTrend.clientWidth || 340;
+        const m = { top: 26, right: 16, bottom: 18, left: 26 };
+
+        const x = d3.scalePoint().domain(trendYears).range([m.left, w - m.right]);
+        const maxV = d3.max(trendSeries, function(s) { return d3.max(s.values); }) || 100;
+        const y = d3.scaleLinear().domain([60, maxV * 1.08]).range([h - m.bottom, m.top]);
+
+        svg.append('g').selectAll('line').data(y.ticks(3)).join('line')
+          .attr('x1', m.left).attr('x2', w - m.right)
+          .attr('y1', function(d) { return y(d); })
+          .attr('y2', function(d) { return y(d); })
+          .attr('stroke', C.grid).attr('stroke-dasharray', '3 4');
+
+        svg.append('g').selectAll('text').data(trendYears).join('text')
+          .attr('x', function(d) { return x(d); })
+          .attr('y', h - 4)
+          .attr('text-anchor', 'middle')
+          .attr('font-size', 8.6)
+          .attr('fill', C.muted)
+          .text(function(d) { return d; });
+
+        const legend = svg.append('g').attr('transform', 'translate(' + m.left + ',8)');
+        trendSeries.forEach(function(s, i) {
+          const g = legend.append('g').attr('transform', 'translate(' + (i * 128) + ',0)');
+          g.append('rect').attr('width', 9).attr('height', 9).attr('rx', 2).attr('fill', s.c);
+          g.append('text').attr('x', 13).attr('y', 8).attr('font-size', 9.2).attr('fill', C.muted).text(s.name);
+        });
+
+        const area = d3.area()
+          .x(function(d) { return x(d.y); })
+          .y0(h - m.bottom)
+          .y1(function(d) { return y(d.v); })
+          .curve(d3.curveMonotoneX);
+        const line = d3.line()
+          .x(function(d) { return x(d.y); })
+          .y(function(d) { return y(d.v); })
+          .curve(d3.curveMonotoneX);
+
+        trendSeries.forEach(function(s, si) {
+          const pts = trendYears.map(function(yy, i) { return { y: yy, v: s.values[i] }; });
+
+          const areaPath = svg.append('path').datum(pts).attr('d', area)
+            .attr('fill', s.c).attr('opacity', 0);
+          areaPath.transition().duration(700).delay(si * 140).attr('opacity', si === 0 ? 0.13 : 0.09);
+
+          const path = svg.append('path').datum(pts).attr('d', line)
+            .attr('fill', 'none').attr('stroke', s.c).attr('stroke-width', 2.2)
+            .attr('stroke-linecap', 'round');
+          const len = (path.node().getTotalLength && path.node().getTotalLength()) || 900;
+          path.attr('stroke-dasharray', len).attr('stroke-dashoffset', len)
+            .transition().duration(1000).delay(si * 150).ease(d3.easeCubicOut)
+            .attr('stroke-dashoffset', 0);
+
+          window.setTimeout(function() {
+            areaPath.attr('opacity', si === 0 ? 0.13 : 0.09);
+            path.attr('stroke-dashoffset', 0);
+          }, 1800);
+
+          const dots = svg.append('g').selectAll('circle').data(pts).join('circle')
+            .attr('class', 'trend-dot')
+            .attr('cx', function(d) { return x(d.y); })
+            .attr('cy', function(d) { return y(d.v); })
+            .attr('r', 3)
+            .attr('fill', '#ffffff').attr('stroke', s.c).attr('stroke-width', 1.8);
+
+          bindTip(dots, function(d) { return s.name + ' ' + d.y + '：指数 ' + d.v; });
+        });
+      }
+
+      // ---------- 5. 分组柱：企业 AI 采用率 ----------
+      function drawAdopt() {
+        const h = 190;
+        const svg = base(hostAdopt, h);
+        const w = hostAdopt.clientWidth || 340;
+        const m = { top: 24, right: 14, bottom: 20, left: 30 };
+
+        const x0 = d3.scaleBand().domain(adoptData.map(function(d) { return d.k; }))
+          .range([m.left, w - m.right]).padding(0.34);
+        const x1 = d3.scaleBand().domain(adoptYears).range([0, x0.bandwidth()]).padding(0.16);
+        const y = d3.scaleLinear().domain([0, 100]).range([h - m.bottom, m.top]);
+
+        const legend = svg.append('g').attr('transform', 'translate(' + m.left + ',8)');
+        adoptYears.forEach(function(yy, i) {
+          const g = legend.append('g').attr('transform', 'translate(' + (i * 84) + ',0)');
+          g.append('rect').attr('width', 9).attr('height', 9).attr('rx', 2).attr('fill', adoptColors[i]);
+          g.append('text').attr('x', 13).attr('y', 8).attr('font-size', 9.2).attr('fill', C.muted).text(yy + ' 年');
+        });
+
+        svg.append('g').selectAll('line').data(y.ticks(3)).join('line')
+          .attr('x1', m.left).attr('x2', w - m.right)
+          .attr('y1', function(d) { return y(d); })
+          .attr('y2', function(d) { return y(d); })
+          .attr('stroke', C.grid).attr('stroke-dasharray', '3 4');
+
+        svg.append('g').selectAll('text').data(adoptData).join('text')
+          .attr('x', function(d) { return x0(d.k) + x0.bandwidth() / 2; })
+          .attr('y', h - 5)
+          .attr('text-anchor', 'middle')
+          .attr('font-size', 9)
+          .attr('fill', C.muted)
+          .text(function(d) { return d.k; });
+
+        const groups = svg.append('g').selectAll('g').data(adoptData).join('g')
+          .attr('transform', function(d) { return 'translate(' + x0(d.k) + ',0)'; });
+
+        const bars = groups.selectAll('rect').data(function(d) {
+          return d.v.map(function(v, i) { return { k: d.k, v: v, i: i }; });
+        }).join('rect')
+          .attr('x', function(d) { return x1(adoptYears[d.i]); })
+          .attr('y', h - m.bottom)
+          .attr('width', x1.bandwidth())
+          .attr('rx', 4)
+          .attr('fill', function(d) { return adoptColors[d.i]; })
+          .attr('opacity', 0.9)
+          .attr('height', 0);
+
+        bars.transition().duration(700).delay(function(d) { return 80 * d.i; }).ease(d3.easeCubicOut)
+          .attr('y', function(d) { return y(d.v); })
+          .attr('height', function(d) { return Math.max(0, h - m.bottom - y(d.v)); });
+
+        const vals = groups.selectAll('text.val').data(function(d) {
+          return d.v.map(function(v, i) { return { k: d.k, v: v, i: i }; });
+        }).join('text')
+          .attr('class', 'val')
+          .attr('x', function(d) { return x1(adoptYears[d.i]) + x1.bandwidth() / 2; })
+          .attr('y', function(d) { return y(d.v) - 4; })
+          .attr('text-anchor', 'middle')
+          .attr('font-size', 8.6)
+          .attr('fill', C.ink)
+          .attr('opacity', 0)
+          .text(function(d) { return d.v + '%'; });
+
+        vals.transition().delay(function(d) { return 400 + 80 * d.i; }).duration(280).attr('opacity', 1);
+
+        window.setTimeout(function() {
+          bars.attr('y', function(d) { return y(d.v); })
+            .attr('height', function(d) { return Math.max(0, h - m.bottom - y(d.v)); });
+          vals.attr('opacity', 1);
+        }, 1700);
+
+        bindTip(bars, function(d) { return d.k + ' ' + adoptYears[d.i] + '：采用率 ' + d.v + '%'; });
+      }
+
+      // ---------- 6. 气泡图：渗透率 × 投入增速 × 市场规模 ----------
+      function drawBubble() {
+        const h = 190;
+        const svg = base(hostBubble, h);
+        const w = hostBubble.clientWidth || 340;
+        const m = { top: 14, right: 24, bottom: 24, left: 30 };
+
+        const x = d3.scaleLinear().domain([20, 75]).range([m.left, w - m.right]);
+        const y = d3.scaleLinear().domain([20, 50]).range([h - m.bottom, m.top]);
+
+        svg.append('g').selectAll('line').data(y.ticks(3)).join('line')
+          .attr('x1', m.left).attr('x2', w - m.right)
+          .attr('y1', function(d) { return y(d); })
+          .attr('y2', function(d) { return y(d); })
+          .attr('stroke', C.grid).attr('stroke-dasharray', '3 4');
+
+        svg.append('g').selectAll('text').data(x.ticks(3)).join('text')
+          .attr('x', function(d) { return x(d); })
+          .attr('y', h - 6)
+          .attr('text-anchor', 'middle')
+          .attr('font-size', 8.6)
+          .attr('fill', C.muted)
+          .text(function(d) { return d + '%'; });
+
+        svg.append('text')
+          .attr('x', m.left).attr('y', 8)
+          .attr('font-size', 8.6).attr('fill', C.muted)
+          .text('横轴：AI 渗透率　纵轴：投入增速　气泡：市场规模');
+
+        const dots = svg.append('g').selectAll('circle').data(bubbleData).join('circle')
+          .attr('cx', function(d) { return x(d.x); })
+          .attr('cy', function(d) { return y(d.y); })
+          .attr('r', 0)
+          .attr('fill', function(d, i) { return i % 2 === 0 ? C.purple : C.blue; })
+          .attr('fill-opacity', 0.24)
+          .attr('stroke', function(d, i) { return i % 2 === 0 ? C.purple : C.blue; })
+          .attr('stroke-width', 1.6);
+
+        dots.transition().duration(760).delay(function(d, i) { return i * 80; }).ease(d3.easeBackOut)
+          .attr('r', function(d) { return Math.sqrt(d.r) * 2.6; });
+
+        window.setTimeout(function() {
+          dots.attr('r', function(d) { return Math.sqrt(d.r) * 2.6; });
+        }, 1700);
+
+        svg.append('g').selectAll('text').data(bubbleData).join('text')
+          .attr('x', function(d) { return x(d.x); })
+          .attr('y', function(d) { return y(d.y) + 3; })
+          .attr('text-anchor', 'middle')
+          .attr('font-size', 8.6)
+          .attr('fill', C.ink)
+          .attr('pointer-events', 'none')
+          .text(function(d) { return d.k; });
+
+        bindTip(dots, function(d) {
+          return d.k + '：渗透率 ' + d.x + '%，投入增速 ' + d.y + '%';
+        });
+      }
+
+      function renderBoard() {
+        if (!board.offsetParent) return;   // 页面未展开时不绘制（宽度为 0）
+        drawRadar();
+        drawTrend();
+        drawBars();
+        drawAdopt();
+        drawBubble();
+        drawDonut();
+        runKpis();
+      }
+
+      // 顶部 KPI 数字滚动
+      let kpiPlayed = false;
+
+      function runKpis() {
+        if (kpiPlayed) return;
+        kpiPlayed = true;
+
+        Array.prototype.forEach.call(document.querySelectorAll('.kpi-num'), function(el, ki) {
+          const target = parseFloat(el.getAttribute('data-target')) || 0;
+          const dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+          const unit = el.getAttribute('data-unit') || '';
+          const fmt = d3.format('.' + dec + 'f');
+          const dur = 1200;
+          const write = function(v) {
+            el.innerHTML = fmt(v) + (unit ? '<small>' + unit + '</small>' : '');
+          };
+
+          let finished = false;
+
+          d3.timer(function(elapsed) {
+            if (finished) return true;
+            const p = Math.min(1, elapsed / dur);
+            const e = 1 - Math.pow(1 - p, 3);
+            write(target * e);
+            if (p >= 1) {
+              finished = true;
+              write(target);
+              const r = el.getBoundingClientRect();
+              board.dispatchEvent(new CustomEvent('board:hover', {
+                detail: { x: r.left + r.width / 2, y: r.top + r.height / 2, strong: true }
+              }));
+              return true;
+            }
+            return false;
+          });
+
+          window.setTimeout(function() {
+            finished = true;
+            write(target);
+          }, dur + 300 + ki * 60);
+        });
+      }
+
+      let boardTimer = null;
+      window.addEventListener('resize', function() {
+        if (boardTimer) clearTimeout(boardTimer);
+        boardTimer = setTimeout(renderBoard, 200);
+      });
+
+      const boardTab = document.querySelector('.subnav-item[data-target="layer4"]');
+      if (boardTab) {
+        boardTab.addEventListener('click', function() {
+          setTimeout(renderBoard, 120);
+        });
+      }
+
+      const boardLayer = document.getElementById('layer4');
+      if (boardLayer && boardLayer.classList.contains('is-open')) renderBoard();
+    })();
+
+    // ========== p5：页面底层粒子网络 ==========
+    (function() {
+      if (typeof p5 === 'undefined') return;
+      const host = document.getElementById('bgCanvas');
+      if (!host) return;
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let mx = -9999;
+      let my = -9999;
+
+      window.addEventListener('pointermove', function(e) {
+        mx = e.clientX;
+        my = e.clientY;
+      });
+
+      new p5(function(s) {
+        let nodes = [];
+
+        function build() {
+          const count = Math.min(46, Math.max(16, Math.round((s.width * s.height) / 90000)));
+          nodes = [];
+          for (let i = 0; i < count; i++) {
+            nodes.push({
+              x: s.random(s.width),
+              y: s.random(s.height),
+              vx: s.random(-0.17, 0.17),
+              vy: s.random(-0.17, 0.17),
+              r: s.random(1.4, 3.4)
+            });
+          }
+        }
+
+        s.setup = function() {
+          const c = s.createCanvas(s.windowWidth, s.windowHeight);
+          c.style('display', 'block');
+          s.pixelDensity(1);
+          build();
+          if (reduce) s.noLoop();
+        };
+
+        s.windowResized = function() {
+          s.resizeCanvas(s.windowWidth, s.windowHeight);
+          build();
+        };
+
+        s.draw = function() {
+          s.clear();
+          const ctx = s.drawingContext;
+
+          // 指针柔光
+          if (mx > -500) {
+            const g = ctx.createRadialGradient(mx, my, 0, mx, my, 260);
+            g.addColorStop(0, 'rgba(124, 58, 237, 0.10)');
+            g.addColorStop(0.5, 'rgba(46, 125, 158, 0.06)');
+            g.addColorStop(1, 'rgba(124, 58, 237, 0)');
+            ctx.fillStyle = g;
+            ctx.fillRect(mx - 260, my - 260, 520, 520);
+          }
+
+          for (let i = 0; i < nodes.length; i++) {
+            const a = nodes[i];
+            for (let j = i + 1; j < nodes.length; j++) {
+              const b = nodes[j];
+              const d = s.dist(a.x, a.y, b.x, b.y);
+              if (d < 160) {
+                let alpha = s.map(d, 40, 160, 42, 0);
+                if (mx > -500) {
+                  const dm = s.dist((a.x + b.x) / 2, (a.y + b.y) / 2, mx, my);
+                  if (dm < 150) alpha += s.map(dm, 0, 150, 62, 0);
+                }
+                s.stroke(46, 125, 158, alpha);
+                s.strokeWeight(1);
+                s.line(a.x, a.y, b.x, b.y);
+              }
+            }
+          }
+          s.noStroke();
+          for (let k = 0; k < nodes.length; k++) {
+            const n = nodes[k];
+            let alpha = 36;
+            let size = n.r * 2;
+            if (mx > -500) {
+              const dm = s.dist(n.x, n.y, mx, my);
+              if (dm < 180) {
+                alpha += s.map(dm, 0, 180, 96, 0);
+                size += s.map(dm, 0, 180, 5, 0);
+              }
+            }
+            s.fill(124, 58, 237, alpha);
+            s.circle(n.x, n.y, size);
+            if (!reduce) {
+              n.x += n.vx;
+              n.y += n.vy;
+              if (n.x < -30 || n.x > s.width + 30) n.vx *= -1;
+              if (n.y < -30 || n.y > s.height + 30) n.vy *= -1;
+            }
+          }
+        };
+      }, host);
+    })();
+
+    // ========== p5：切屏弹幕粒子（01 / 04 页） ==========
+    (function() {
+      if (typeof p5 === 'undefined') return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const stages = Array.prototype.slice.call(document.querySelectorAll('.stage'));
+      if (!stages.length) return;
+
+      const COLORS = [[46, 125, 158], [124, 58, 237], [139, 92, 246]];
+
+      stages.forEach(function(stageEl) {
+        const host = document.createElement('div');
+        host.className = 'stage-fx';
+        stageEl.appendChild(host);
+
+        let particles = [];
+
+        function fire(slide) {
+          if (!slide || stageEl.offsetParent === null) return;
+
+          const targets = [slide.querySelector('h3'), slide.querySelector('.slide-lead')]
+            .concat(Array.prototype.slice.call(slide.querySelectorAll('.slide-points > li, .slide-foot, .cmp-row, .mini-card')))
+            .filter(Boolean)
+            .slice(0, 7);
+          if (!targets.length) return;
+
+          const W = stageEl.clientWidth;
+          const H = stageEl.clientHeight;
+
+          targets.forEach(function(el, idx) {
+            const tx = el.offsetLeft + 6;
+            const ty = el.offsetTop + el.offsetHeight / 2;
+            const dir = idx % 4;
+            let sx = tx;
+            let sy = ty;
+            if (dir === 0) sx = -60;
+            else if (dir === 1) sy = H + 60;
+            else if (dir === 2) sx = W + 60;
+            else sy = -60;
+
+            for (let k = 0; k < 4; k++) {
+              particles.push({
+                sx: sx + Math.random() * 80 - 40,
+                sy: sy + Math.random() * 60 - 30,
+                tx: tx,
+                ty: ty,
+                t: -(k * 0.06) - Math.random() * 0.05,
+                v: 0.022 + Math.random() * 0.012,
+                r: 5 + Math.random() * 6,
+                c: COLORS[(idx + k) % COLORS.length]
+              });
+            }
+          });
+        }
+
+        new p5(function(s) {
+          s.setup = function() {
+            const c = s.createCanvas(stageEl.clientWidth, stageEl.clientHeight);
+            c.style('display', 'block');
+            s.pixelDensity(1);
+          };
+
+          s.windowResized = function() {
+            s.resizeCanvas(stageEl.clientWidth, stageEl.clientHeight);
+          };
+
+          s.draw = function() {
+            s.clear();
+            if (!particles.length) return;
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+              const p = particles[i];
+              p.t += p.v;
+              if (p.t < 0) continue;
+              if (p.t >= 1) { particles.splice(i, 1); continue; }
+
+              const e = 1 - Math.pow(1 - p.t, 3);
+              const x = s.lerp(p.sx, p.tx, e);
+              const y = s.lerp(p.sy, p.ty, e);
+              const a = p.t < 0.7 ? 210 : s.map(p.t, 0.7, 1, 210, 0);
+
+              s.noStroke();
+              s.fill(p.c[0], p.c[1], p.c[2], a);
+              s.circle(x, y, p.r * (1 - p.t * 0.35));
+            }
+          };
+        }, host);
+
+        stageEl.addEventListener('stage:slide', function(ev) {
+          fire(ev.detail && ev.detail.slide);
+        });
+
+        // 从二级菜单进入该页时也放一次
+        Array.prototype.forEach.call(document.querySelectorAll('.subnav-item'), function(tab) {
+          tab.addEventListener('click', function() {
+            setTimeout(function() {
+              fire(stageEl.querySelector('.stage-slide.is-active'));
+            }, 140);
+          });
+        });
+      });
+    })();
+
+    // ========== p5：数据看板特效（数据流 + 粒子迸发） ==========
+    (function() {
+      if (typeof p5 === 'undefined') return;
+
+      const board = document.getElementById('board');
+      const streamHost = document.querySelector('.board-stream');
+      const fxHost = document.querySelector('.board-fx');
+      if (!board || !streamHost || !fxHost) return;
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // 1) 看板背后的数据流
+      new p5(function(s) {
+        let lines = [];
+
+        function build() {
+          lines = [];
+          const n = 4;
+          for (let i = 0; i < n; i++) {
+            const y = s.height * (i + 1) / (n + 1) + s.random(-12, 12);
+            const line = {
+              y: y,
+              speed: s.random(0.22, 0.5),
+              w: s.random(120, 260),
+              x: s.random(-320, Math.max(80, s.width)),
+              packets: []
+            };
+            for (let k = 0; k < 2; k++) {
+              line.packets.push({ p: s.random(0, 1), v: s.random(0.0022, 0.0042) });
+            }
+            lines.push(line);
+          }
+        }
+
+        s.setup = function() {
+          const c = s.createCanvas(streamHost.clientWidth || 400, streamHost.clientHeight || 300);
+          c.style('display', 'block');
+          s.pixelDensity(1);
+          build();
+          if (reduce) s.noLoop();
+        };
+
+        s.draw = function() {
+          const W = streamHost.clientWidth;
+          const H = streamHost.clientHeight;
+          if (W && H && (Math.abs(s.width - W) > 2 || Math.abs(s.height - H) > 2)) {
+            s.resizeCanvas(W, H);
+            build();
+          }
+
+          s.clear();
+          for (let i = 0; i < lines.length; i++) {
+            const L = lines[i];
+            const g = s.drawingContext.createLinearGradient(L.x, L.y, L.x + L.w, L.y);
+            g.addColorStop(0, 'rgba(46, 125, 158, 0)');
+            g.addColorStop(0.5, 'rgba(124, 58, 237, 0.2)');
+            g.addColorStop(1, 'rgba(46, 125, 158, 0)');
+            s.drawingContext.strokeStyle = g;
+            s.drawingContext.lineWidth = 1.4;
+            s.drawingContext.beginPath();
+            s.drawingContext.moveTo(L.x, L.y);
+            s.drawingContext.lineTo(L.x + L.w, L.y);
+            s.drawingContext.stroke();
+
+            if (!reduce) {
+              L.x += L.speed;
+              if (L.x > s.width + 40) {
+                L.x = -L.w - 40;
+                L.y = s.random(Math.max(40, s.height));
+              }
+            }
+
+            // 沿线流动的数据包（只落在线上，不再随机漂浮）
+            s.noStroke();
+            for (let k = 0; k < L.packets.length; k++) {
+              const pk = L.packets[k];
+              if (!reduce) {
+                pk.p += pk.v;
+                if (pk.p > 1) pk.p -= 1;
+              }
+              const px = L.x + pk.p * L.w;
+              const fade = Math.sin(Math.PI * pk.p);
+              s.fill(124, 58, 237, 150 * fade);
+              s.circle(px, L.y, 5 * fade + 1.5);
+            }
+          }
+        };
+      }, streamHost);
+
+      // 2) 前景粒子：悬停图表与 KPI 数字落定时迸发
+      new p5(function(s) {
+        let parts = [];
+        let lastBurst = 0;
+
+        s.setup = function() {
+          const c = s.createCanvas(fxHost.clientWidth || 400, fxHost.clientHeight || 300);
+          c.style('display', 'block');
+          s.pixelDensity(1);
+        };
+
+        s.draw = function() {
+          const W = fxHost.clientWidth;
+          const H = fxHost.clientHeight;
+          if (W && H && (Math.abs(s.width - W) > 2 || Math.abs(s.height - H) > 2)) {
+            s.resizeCanvas(W, H);
+          }
+
+          s.clear();
+          if (!parts.length) return;
+
+          for (let i = parts.length - 1; i >= 0; i--) {
+            const p = parts[i];
+            p.t += p.v;
+            if (p.t >= 1) { parts.splice(i, 1); continue; }
+
+            const e = 1 - Math.pow(1 - p.t, 2);
+            const x = s.lerp(p.sx, p.tx, e);
+            const y = s.lerp(p.sy, p.ty, e) - Math.sin(Math.PI * p.t) * 16;
+            const a = p.t < 0.6 ? 220 : s.map(p.t, 0.6, 1, 220, 0);
+
+            s.noStroke();
+            s.fill(p.c[0], p.c[1], p.c[2], a);
+            s.circle(x, y, p.r * (1 - p.t * 0.5));
+          }
+        };
+
+        board.addEventListener('board:hover', function(ev) {
+          if (reduce) return;
+          const d = ev.detail || {};
+          if (typeof d.x !== 'number') return;
+          if (parts.length > 120) return;
+
+          const now = (window.performance && performance.now) ? performance.now() : Date.now();
+          if (!d.strong && now - lastBurst < 130) return;
+          lastBurst = now;
+
+          const rect = fxHost.getBoundingClientRect();
+          if (!rect.width || !rect.height) return;
+
+          const tx = d.x - rect.left;
+          const ty = d.y - rect.top;
+          const n = d.strong ? 12 : 6;
+          const colors = [[124, 58, 237], [46, 125, 158], [139, 92, 246]];
+
+          for (let i = 0; i < n; i++) {
+            parts.push({
+              sx: tx + (Math.random() * 90 - 45),
+              sy: ty + (Math.random() * 70 - 10),
+              tx: tx,
+              ty: ty,
+              t: 0,
+              v: 0.03 + Math.random() * 0.02,
+              r: 3 + Math.random() * 5,
+              c: colors[i % colors.length]
+            });
+          }
+        });
+      }, fxHost);
+    })();
+
+    // ========== 二级菜单：三个二级页面互斥展开（未停留的只显示标题） ==========
+    (function() {
+      const nav = document.getElementById('subnav');
+      const layers = Array.prototype.slice.call(document.querySelectorAll('.layer'));
+      if (!nav || !layers.length) return;
+
+      const tabs = Array.prototype.slice.call(nav.querySelectorAll('.subnav-item'));
+
+      function activate(id, shouldScroll) {
+        let target = null;
+
+        layers.forEach(function(layer) {
+          const isOpen = layer.id === id;
+          layer.classList.toggle('is-open', isOpen);
+          if (isOpen) target = layer;
+        });
+
+        tabs.forEach(function(tab) {
+          tab.classList.toggle('is-active', tab.dataset.target === id);
+        });
+
+        if (!target) return;
+
+        // 页面展开后重新测量其中的拖拽轨道（折叠时宽度为 0）
+        const localTracks = Array.prototype.slice.call(target.querySelectorAll('.single-card-track'));
+        if (localTracks.length) {
+          window.requestAnimationFrame(function() {
+            localTracks.forEach(function(track) {
+              if (track.dataset.loop === 'true' && cardTrackAPI.reset) {
+                cardTrackAPI.reset(track);
+              } else if (cardTrackAPI.sync) {
+                cardTrackAPI.sync(track);
+              }
+            });
+          });
+        }
+
+        if (shouldScroll) {
+          const top = target.getBoundingClientRect().top + window.pageYOffset - 18;
+          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }
+      }
+
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          activate(tab.dataset.target, true);
+        });
+      });
+
+      const initial = layers.filter(function(layer) {
+        return layer.classList.contains('is-open');
+      })[0] || layers[0];
+      activate(initial.id, false);
+    })();
+
+    // ========== 特效：滑动指示器 / 点击涟漪 / 卡片柔光倾斜 ==========
+    (function() {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const nav = document.getElementById('subnav');
+      const pill = nav && nav.querySelector('.subnav-pill');
+      const tabs = nav ? Array.prototype.slice.call(nav.querySelectorAll('.subnav-item')) : [];
+      let pillTimer = null;
+
+      function movePill() {
+        if (!pill || !nav) return;
+        const active = nav.querySelector('.subnav-item.is-active');
+        if (!active) return;
+        pill.style.width = active.offsetWidth + 'px';
+        pill.style.transform = 'translateX(' + active.offsetLeft + 'px)';
+        pill.classList.add('is-ready');
+      }
+
+      if (nav && pill) {
+        if (window.MutationObserver) {
+          const mo = new MutationObserver(function() {
+            window.requestAnimationFrame(movePill);
+          });
+          tabs.forEach(function(tab) {
+            mo.observe(tab, { attributes: true, attributeFilter: ['class'] });
+          });
+        }
+        window.requestAnimationFrame(movePill);
+        window.addEventListener('resize', function() {
+          if (pillTimer) clearTimeout(pillTimer);
+          pillTimer = setTimeout(movePill, 120);
+        });
+      }
+
+      // 点击涟漪
+      function addRipple(el) {
+        el.classList.add('fx-ripple');
+        el.addEventListener('click', function(e) {
+          if (reduce) return;
+          const r = el.getBoundingClientRect();
+          const size = Math.max(r.width, r.height);
+          const wave = document.createElement('span');
+          wave.className = 'fx-ripple-wave';
+          wave.style.width = size + 'px';
+          wave.style.height = size + 'px';
+          wave.style.left = (e.clientX - r.left - size / 2) + 'px';
+          wave.style.top = (e.clientY - r.top - size / 2) + 'px';
+          el.appendChild(wave);
+          window.setTimeout(function() { wave.remove(); }, 660);
+        });
+      }
+
+      Array.prototype.forEach.call(
+        document.querySelectorAll('.subnav-item, .stage-step, .carrier-head'),
+        addRipple
+      );
+
+      // 卡片：指针跟随柔光 + 轻微 3D 倾斜
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      if (finePointer && !reduce) {
+        const targets = document.querySelectorAll('.board-panel, .bench-card, .carrier-item, .htl-card');
+
+        Array.prototype.forEach.call(targets, function(el) {
+          if (!el.querySelector(':scope > .fx-glow')) {
+            const glow = document.createElement('span');
+            glow.className = 'fx-glow';
+            glow.setAttribute('aria-hidden', 'true');
+            el.appendChild(glow);
+          }
+
+          el.classList.add('fx-tilt');
+          const max = el.classList.contains('board-panel') ? 5 : 4;
+
+          el.addEventListener('pointermove', function(e) {
+            if (e.buttons) {
+              el.style.transform = '';
+              return;
+            }
+            const r = el.getBoundingClientRect();
+            const px = (e.clientX - r.left) / Math.max(1, r.width);
+            const py = (e.clientY - r.top) / Math.max(1, r.height);
+
+            el.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+            el.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+            el.classList.add('fx-active');
+            el.style.transform = 'perspective(1000px) rotateY(' + ((px - 0.5) * max * 2).toFixed(2) +
+              'deg) rotateX(' + ((0.5 - py) * max * 2).toFixed(2) + 'deg) translateY(-2px)';
+          });
+
+          el.addEventListener('pointerleave', function() {
+            el.classList.remove('fx-active');
+            el.style.transform = '';
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
