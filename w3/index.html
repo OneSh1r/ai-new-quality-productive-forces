@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>可视化 Pandas · Visual Pandas</title>
+<meta name="description" content="Visual Pandas — a bilingual, visual workspace for pandas-style data analysis: load any data, explore it visually, and get the equivalent pandas code.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M9 9h14v14H9zM9 15h14M15 9v14' stroke='white' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div id="app">
+  <noscript>
+    <div class="panel" style="margin:24px">
+      <div class="panel-body">This workspace needs JavaScript. 本工作台需要启用 JavaScript。</div>
+    </div>
+  </noscript>
+</div>
+
+<div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+
+<!-- ---------------------------------------------------------------------------
+     Loaded as classic scripts (no modules) so the page also works when opened
+     straight from the file system. Order matters: definitions before use.
+     ------------------------------------------------------------------------ -->
+<!-- Vendored locally (not from a CDN) so the workspace keeps working offline.
+     D3 drives chart transitions and number counters; p5.js draws the ambient
+     effects. Both are optional: the app degrades to static rendering without
+     them. -->
+<script src="assets/vendor/d3.min.js"></script>
+<script src="assets/vendor/p5.min.js"></script>
+<script src="js/util.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/df.js"></script>
+<script src="js/io.js"></script>
+<script src="js/datasets.js"></script>
+<script src="js/expr.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/ops.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/dialog.js"></script>
+<script src="js/anim.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/chart-prep.js"></script>
+<script src="js/marks-xy.js"></script>
+<script src="js/marks-points.js"></script>
+<script src="js/marks-special.js"></script>
+<script src="js/forms.js"></script>
+<script src="js/forms-rows.js"></script>
+<script src="js/app-state.js"></script>
+<script src="js/app-data.js"></script>
+<script src="js/app-pipeline.js"></script>
+<script src="js/focus.js"></script>
+<script src="js/panel-ops.js"></script>
+<script src="js/panel-rail.js"></script>
+<script src="js/panel-source.js"></script>
+<script src="js/views-table.js"></script>
+<script src="js/views-profile.js"></script>
+<script src="js/views-profile2.js"></script>
+<script src="js/views-charts.js"></script>
+<script src="js/views-group.js"></script>
+<script src="js/views-combine.js"></script>
+<script src="js/views-code.js"></script>
+<script src="js/app-shell.js"></script>
+<script src="js/boot.js"></script>
+</body>
+</html>
