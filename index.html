@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="《可视化导论》课程：从数据、流程、色彩到低维与时序可视化的交互式学习路径。">
+  <title>可视化导论 · 从数据到图形</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <a class="skip-link" href="#chapters">跳到课程内容</a>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="可视化导论首页">
+      <span class="brand-mark" aria-hidden="true">
+        <i></i><i></i><i></i><i></i>
+      </span>
+      <span class="brand-copy">
+        <strong>可视化导论</strong>
+        <small>VISUALIZATION</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      <a href="#chapters">课程地图</a>
+      <a href="#path">学习路径</a>
+      <a href="#toolkit">学习工具</a>
+      <a href="#about">关于</a>
+    </nav>
+    <a class="header-cta" id="continueLink" href="lesson-01/index.html#ch-1-1">
+      <span id="continueLabel">开始学习</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> 中国石油大学（华东） · 数据可视化课程</p>
+        <h1 id="hero-title">让数据<br><em>被看见</em>，<br>也被理解。</h1>
+        <p class="hero-lead">不只学 D3 的写法，更建立一套判断：什么数据、用什么图形、为什么这样编码。五章内容沿一条清晰的路径展开，每一节都配有可运行演示与即时自测。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="lesson-01/index.html#ch-1-1">从第 1 章开始 <span aria-hidden="true">→</span></a>
+          <button class="button button-ghost" type="button" data-scroll="#chapters">先看课程地图</button>
+        </div>
+        <dl class="hero-stats" aria-label="课程规模">
+          <div><dt>05</dt><dd>核心章节</dd></div>
+          <div><dt>27</dt><dd>学习小节</dd></div>
+          <div><dt>27</dt><dd>交互演示</dd></div>
+          <div><dt>0</dt><dd>视频依赖</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-visual" aria-label="数据点经过视觉编码形成趋势图的示意">
+        <div class="visual-topline">
+          <span>DATA / VISUAL FORM</span>
+          <span class="live-dot">LIVE CANVAS</span>
+        </div>
+        <div class="canvas-wrap">
+          <svg id="heroChart" viewBox="0 0 560 430" role="img" aria-labelledby="heroChartTitle">
+            <title id="heroChartTitle">一组数据点沿着向上趋势排列，并被编码为散点与趋势线</title>
+            <g class="canvas-grid" aria-hidden="true"></g>
+            <g class="canvas-axis" aria-hidden="true"></g>
+            <path class="trend-area" d="" aria-hidden="true"></path>
+            <path class="trend-line" d="" aria-hidden="true"></path>
+            <g class="canvas-points"></g>
+            <g class="annotation annotation-a">
+              <circle cx="390" cy="136" r="5"></circle>
+              <line x1="390" y1="136" x2="458" y2="84"></line>
+              <text x="466" y="78">位置：最强的定量通道</text>
+              <text x="466" y="98" class="annotation-sub">同一变量，越靠上越易比较</text>
+            </g>
+            <g class="annotation annotation-b">
+              <circle cx="172" cy="298" r="5"></circle>
+              <line x1="172" y1="298" x2="88" y2="362"></line>
+              <text x="20" y="366">颜色：用于区分类别</text>
+            </g>
+          </svg>
+          <div class="canvas-tooltip" id="heroTooltip" role="status" aria-live="polite">
+            <span>悬停数据点</span>
+            <strong>查看视觉编码</strong>
+          </div>
+        </div>
+        <div class="visual-footer">
+          <p>同一组数据，换一种编码，读者看到的故事就会改变。</p>
+          <div class="encoding-key" aria-label="视觉通道图例">
+            <span><i class="key-position"></i>位置</span>
+            <span><i class="key-length"></i>长度</span>
+            <span><i class="key-hue"></i>色相</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="study-strip" aria-label="课程特色">
+      <div>
+        <span class="strip-index">01</span>
+        <strong>先建立判断</strong>
+        <p>每个概念都回到“这张图为什么这样画”。</p>
+      </div>
+      <div>
+        <span class="strip-index">02</span>
+        <strong>再拆开代码</strong>
+        <p>关键代码默认收起，需要时展开，不打断阅读。</p>
+      </div>
+      <div>
+        <span class="strip-index">03</span>
+        <strong>最后动手验证</strong>
+        <p>演示直接嵌在知识点旁边，改一个参数就能看结果。</p>
+      </div>
+    </section>
+
+    <section class="chapters-section" id="chapters" aria-labelledby="chapters-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">COURSE MAP / 课程地图</p>
+          <h2 id="chapters-title">五章，一条完整的可视化路径</h2>
+        </div>
+        <p class="section-intro">从“数据是什么”出发，经过流程与色彩，最终进入二维空间和时间叙事。点击卡片进入章节，进度会自动保存在本机。</p>
+      </div>
+
+      <div class="chapter-toolbar">
+        <div class="filter-group" role="group" aria-label="筛选章节">
+          <button class="filter-chip active" data-filter="all">全部</button>
+          <button class="filter-chip" data-filter="foundation">数据基础</button>
+          <button class="filter-chip" data-filter="mapping">视觉映射</button>
+          <button class="filter-chip" data-filter="spatial">空间与时间</button>
+        </div>
+        <label class="chapter-search">
+          <span class="sr-only">搜索章节或关键词</span>
+          <input id="chapterSearch" type="search" placeholder="搜索：D3 / 色彩 / 螺旋…" autocomplete="off">
+          <span aria-hidden="true">⌕</span>
+        </label>
+      </div>
+
+      <div class="chapter-list" id="chapterList">
+        <article class="chapter-card" data-tags="数据 DIKW Stevens Mackinlay D3 join 新生" data-filter="foundation">
+          <a class="chapter-main" href="lesson-01/index.html#ch-1-1">
+            <div class="chapter-number">01</div>
+            <div class="chapter-visual visual-data" aria-hidden="true">
+              <svg viewBox="0 0 220 150">
+                <g class="mini-grid">
+                  <path d="M18 32H202M18 62H202M18 92H202M18 122H202"></path>
+                  <path d="M18 20V132M64 20V132M110 20V132M156 20V132M202 20V132"></path>
+                </g>
+                <g class="mini-dots">
+                  <circle cx="38" cy="106" r="5"></circle><circle cx="64" cy="86" r="5"></circle>
+                  <circle cx="88" cy="96" r="5"></circle><circle cx="112" cy="62" r="5"></circle>
+                  <circle cx="138" cy="74" r="5"></circle><circle cx="162" cy="48" r="5"></circle>
+                  <circle cx="186" cy="36" r="5"></circle>
+                </g>
+                <path class="mini-trend" d="M38 106 C74 98 88 78 112 62 S154 54 186 36"></path>
+              </svg>
+              <span class="visual-caption">RAW → MEANING</span>
+            </div>
+            <div class="chapter-copy">
+              <div class="chapter-meta"><span>第 1 章</span><span>5 节 · 约 35 分钟</span></div>
+              <h3>数据</h3>
+              <p>从 80 条合成新生数据出发，理解 DIKW、测量尺度、视觉通道，以及 D3 的加载、变换与 Data-Join。</p>
+              <ul class="concept-tags">
+                <li>DIKW</li><li>Stevens 尺度</li><li>视觉通道</li><li>Data-Join</li>
+              </ul>
+            </div>
+            <div class="chapter-progress">
+              <span class="progress-label">未开始</span>
+              <span class="progress-track"><i></i></span>
+              <span class="chapter-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="chapter-card" data-tags="流程 Card 模型 rollup 树布局 Reingold Tilford 事件委托" data-filter="mapping">
+          <a class="chapter-main" href="lesson-02/index.html#ch-2-1">
+            <div class="chapter-number">02</div>
+            <div class="chapter-visual visual-flow" aria-hidden="true">
+              <svg viewBox="0 0 220 150">
+                <path class="flow-link" d="M48 48H94M126 48H170M110 64V88M110 102V118"></path>
+                <rect x="18" y="30" width="32" height="32" rx="6"></rect>
+                <rect x="94" y="30" width="32" height="32" rx="6"></rect>
+                <rect x="170" y="30" width="32" height="32" rx="6"></rect>
+                <rect x="92" y="86" width="36" height="26" rx="6"></rect>
+                <circle cx="110" cy="126" r="10"></circle>
+                <g class="flow-labels"><text x="34" y="22">原始</text><text x="110" y="22">变换</text><text x="186" y="22">映射</text></g>
+              </svg>
+              <span class="visual-caption">RAW → TABLE → VIEW</span>
+            </div>
+            <div class="chapter-copy">
+              <div class="chapter-meta"><span>第 2 章</span><span>4 节 · 约 40 分钟</span></div>
+              <h3>数据可视化流程</h3>
+              <p>把一张表拆成“变换—映射—渲染”的可复用流程，并用分类树、Reingold-Tilford 与事件委托完成落地。</p>
+              <ul class="concept-tags">
+                <li>Card 模型</li><li>d3.rollup</li><li>树布局</li><li>事件委托</li>
+              </ul>
+            </div>
+            <div class="chapter-progress">
+              <span class="progress-label">未开始</span>
+              <span class="progress-track"><i></i></span>
+              <span class="chapter-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="chapter-card" data-tags="色彩 颜色空间 Lab colormap 配色 CVD 色盲 Wong Tol" data-filter="mapping">
+          <a class="chapter-main" href="lesson-03/index.html#ch-3-1">
+            <div class="chapter-number">03</div>
+            <div class="chapter-visual visual-color" aria-hidden="true">
+              <div class="color-ramp">
+                <i style="--c:#d9e7d2"></i><i style="--c:#8fc6a7"></i><i style="--c:#3a9b86"></i>
+                <i style="--c:#136f63"></i><i style="--c:#0b4f4a"></i><i style="--c:#f0a58f"></i>
+                <i style="--c:#e26d5c"></i><i style="--c:#b74132"></i>
+              </div>
+              <div class="color-wheel" aria-hidden="true"></div>
+              <span class="visual-caption">HUE / VALUE / ORDER</span>
+            </div>
+            <div class="chapter-copy">
+              <div class="chapter-meta"><span>第 3 章</span><span>8 节 · 约 55 分钟</span></div>
+              <h3>色彩专题</h3>
+              <p>颜色不是装饰，而是数据通道。掌握颜色空间、colormap 选型、科研配色与色觉缺陷检查。</p>
+              <ul class="concept-tags">
+                <li>色彩空间</li><li>Colormap</li><li>色觉缺陷</li><li>配色生成</li>
+              </ul>
+            </div>
+            <div class="chapter-progress">
+              <span class="progress-label">未开始</span>
+              <span class="progress-track"><i></i></span>
+              <span class="chapter-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="chapter-card" data-tags="低维 坐标变换 曲线拟合 Cleveland 45度 等值线 Marching Squares" data-filter="spatial">
+          <a class="chapter-main" href="lesson-04/index.html#ch-4-1">
+            <div class="chapter-number">04</div>
+            <div class="chapter-visual visual-space" aria-hidden="true">
+              <svg viewBox="0 0 220 150">
+                <g class="mini-grid"><path d="M18 30H202M18 60H202M18 90H202M18 120H202"></path><path d="M18 20V132M68 20V132M118 20V132M168 20V132"></path></g>
+                <g class="contour-lines">
+                  <path d="M22 112 C50 70 78 62 104 84 S160 110 196 48"></path>
+                  <path d="M22 96 C54 56 82 46 108 70 S164 94 196 34"></path>
+                  <path d="M22 128 C46 84 74 78 100 100 S158 126 196 64"></path>
+                </g>
+                <circle class="highlight-dot" cx="104" cy="84" r="5"></circle>
+              </svg>
+              <span class="visual-caption">SPACE → SHAPE</span>
+            </div>
+            <div class="chapter-copy">
+              <div class="chapter-meta"><span>第 4 章</span><span>5 节 · 约 45 分钟</span></div>
+              <h3>低维数据可视化</h3>
+              <p>从宽长表转换、三层坐标变换，到 10 种曲线、45° 倾角感知与 Marching Squares 等值线。</p>
+              <ul class="concept-tags">
+                <li>坐标变换</li><li>曲线类型</li><li>45° 黄金角</li><li>等值线</li>
+              </ul>
+            </div>
+            <div class="chapter-progress">
+              <span class="progress-label">未开始</span>
+              <span class="progress-track"><i></i></span>
+              <span class="chapter-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="chapter-card" data-tags="时序 时间属性 日历热图 螺旋 Storyline 故事线 侏罗纪公园" data-filter="spatial">
+          <a class="chapter-main" href="lesson-05/index.html#ch-5-1">
+            <div class="chapter-number">05</div>
+            <div class="chapter-visual visual-time" aria-hidden="true">
+              <svg viewBox="0 0 220 150">
+                <g class="calendar-dots">
+                  <circle cx="28" cy="30" r="5"></circle><circle cx="46" cy="30" r="5"></circle><circle cx="64" cy="30" r="5"></circle><circle cx="82" cy="30" r="5"></circle><circle cx="100" cy="30" r="5"></circle><circle cx="118" cy="30" r="5"></circle><circle cx="136" cy="30" r="5"></circle><circle cx="154" cy="30" r="5"></circle><circle cx="172" cy="30" r="5"></circle><circle cx="190" cy="30" r="5"></circle>
+                  <circle cx="28" cy="48" r="5"></circle><circle cx="46" cy="48" r="5"></circle><circle cx="64" cy="48" r="5"></circle><circle cx="82" cy="48" r="5"></circle><circle cx="100" cy="48" r="5"></circle><circle cx="118" cy="48" r="5"></circle><circle cx="136" cy="48" r="5"></circle><circle cx="154" cy="48" r="5"></circle><circle cx="172" cy="48" r="5"></circle><circle cx="190" cy="48" r="5"></circle>
+                  <circle cx="28" cy="66" r="5"></circle><circle cx="46" cy="66" r="5"></circle><circle cx="64" cy="66" r="5"></circle><circle cx="82" cy="66" r="5"></circle><circle cx="100" cy="66" r="5"></circle><circle cx="118" cy="66" r="5"></circle><circle cx="136" cy="66" r="5"></circle><circle cx="154" cy="66" r="5"></circle><circle cx="172" cy="66" r="5"></circle><circle cx="190" cy="66" r="5"></circle>
+                </g>
+                <path class="time-line" d="M24 122 C54 122 54 88 92 88 S132 112 160 92 S184 64 200 64"></path>
+                <circle class="time-now" cx="160" cy="92" r="6"></circle>
+              </svg>
+              <span class="visual-caption">YEAR → WEEK → RHYTHM</span>
+            </div>
+            <div class="chapter-copy">
+              <div class="chapter-meta"><span>第 5 章</span><span>5 节 · 约 40 分钟</span></div>
+              <h3>时序数据可视化</h3>
+              <p>理解时间的五个属性，在折线、日历热图、极坐标螺旋与 Storyline 之间做出有依据的选择。</p>
+              <ul class="concept-tags">
+                <li>时间属性</li><li>日历热图</li><li>阿基米德螺旋</li><li>Storyline</li>
+              </ul>
+            </div>
+            <div class="chapter-progress">
+              <span class="progress-label">未开始</span>
+              <span class="progress-track"><i></i></span>
+              <span class="chapter-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        </article>
+      </div>
+      <p class="empty-result" id="emptyResult" hidden>没有匹配的章节，换一个关键词试试。</p>
+    </section>
+
+    <section class="path-section" id="path" aria-labelledby="path-title">
+      <div class="section-head path-head">
+        <div>
+          <p class="section-kicker">HOW TO LEARN / 学习路径</p>
+          <h2 id="path-title">每一节都按同一节奏展开</h2>
+        </div>
+        <p class="section-intro">不要求你先记住术语。先看一个问题，再看为什么，最后用代码和演示把它验证一遍。</p>
+      </div>
+
+      <ol class="learning-route">
+        <li>
+          <span class="route-num">1</span>
+          <div class="route-line" aria-hidden="true"></div>
+          <h3>读情境</h3>
+          <p>从新生数据、犯罪率、法国人名等真实案例进入，先知道“要解决什么”。</p>
+          <span class="route-time">3–5 min</span>
+        </li>
+        <li>
+          <span class="route-num">2</span>
+          <div class="route-line" aria-hidden="true"></div>
+          <h3>抓判断</h3>
+          <p>用“一句话总结”和“易错点”把概念压缩成可迁移的决策规则。</p>
+          <span class="route-time">5–8 min</span>
+        </li>
+        <li>
+          <span class="route-num">3</span>
+          <div class="route-line" aria-hidden="true"></div>
+          <h3>拆代码</h3>
+          <p>关键代码不再占据阅读版面，展开后仍保留逐段解释与常见坑。</p>
+          <span class="route-time">8–12 min</span>
+        </li>
+        <li>
+          <span class="route-num">4</span>
+          <div class="route-line" aria-hidden="true"></div>
+          <h3>做验证</h3>
+          <p>操作内嵌演示，完成 4 道即时自测，再决定是否标记本节为完成。</p>
+          <span class="route-time">5–10 min</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="toolkit-section" id="toolkit" aria-labelledby="toolkit-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">FIELD KIT / 学习工具</p>
+          <h2 id="toolkit-title">把抽象原则变成可操作的工具</h2>
+        </div>
+        <p class="section-intro">这些工具都直接嵌入对应章节，不需要安装插件，也不会加载视频。</p>
+      </div>
+      <div class="tool-grid">
+        <a class="tool-card" href="lesson-01/index.html#ch-1-5">
+          <span class="tool-icon tool-icon-join" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="tool-label">DATA JOIN</span>
+          <h3>三态沙盒</h3>
+          <p>增加、更新、删除数据，观察 enter / update / exit 如何分别响应。</p>
+          <span class="tool-link">打开演示 →</span>
+        </a>
+        <a class="tool-card" href="lesson-03/index.html#ch-3-7">
+          <span class="tool-icon tool-icon-color" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="tool-label">PALETTE LAB</span>
+          <h3>配色生成器</h3>
+          <p>生成“鲜艳但低饱和”的 5–7 色方案，并检查类别之间的可区分性。</p>
+          <span class="tool-link">打开工具 →</span>
+        </a>
+        <a class="tool-card" href="lesson-05/index.html#ch-5-3">
+          <span class="tool-icon tool-icon-calendar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="tool-label">TIME LENS</span>
+          <h3>时间视角切换</h3>
+          <p>在折线、日历热图与螺旋之间切换，看同一批数据如何呈现不同周期。</p>
+          <span class="tool-link">打开演示 →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="about-section" id="about" aria-labelledby="about-title">
+      <div class="about-copy">
+        <p class="section-kicker">ABOUT / 关于课程</p>
+        <h2 id="about-title">案例为中心，判断优先于语法。</h2>
+        <p>课程以陈为《可视化导论》为主要理论参考，结合 Mackinlay 视觉通道、Stevens 测量尺度、Cleveland 倾角感知与 Card 数据流模型。所有演示均为浏览器内运行，不使用视频，适合课堂投屏与课后自学。</p>
+        <p class="teacher-line">授课教师：<a href="https://cinger007.github.io" target="_blank" rel="noopener">李昕</a><span>中国石油大学（华东）</span></p>
+      </div>
+      <dl class="about-facts">
+        <div><dt>理论参考</dt><dd>陈为《可视化导论》</dd></div>
+        <div><dt>技术栈</dt><dd>HTML · CSS · D3.js v7</dd></div>
+        <div><dt>运行方式</dt><dd>本地静态服务器，无需 npm</dd></div>
+        <div><dt>内容形式</dt><dd>图文 · 代码 · 交互演示 · 自测</dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <span class="brand-mark small" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <p>可视化导论<br><small>让每一张图都有依据。</small></p>
+    </div>
+    <p>© 2026 中国石油大学（华东） · 授课教师 <a href="https://cinger007.github.io" target="_blank" rel="noopener">李昕</a></p>
+    <a href="#top">回到顶部 ↑</a>
+  </footer>
+
+  <script src="vendor/d3.v7.min.js"></script>
+  <script src="assets/portal.js"></script>
+</body>
+</html>

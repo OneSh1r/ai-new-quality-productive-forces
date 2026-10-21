@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>补充演示 · 可视化导论</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --paper: #f3f0e6;
+      --white: #fffefa;
+      --ink: #19231e;
+      --muted: #737b74;
+      --line: #d9d4c6;
+      --forest: #173f35;
+      --coral: #dd6c54;
+      --display: Georgia, "Times New Roman", "Songti SC", "STSong", serif;
+      --sans: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: "Cascadia Code", Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    :focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(25, 35, 30, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(25, 35, 30, .025) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      font-family: var(--sans);
+      line-height: 1.65;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      padding: 0 clamp(18px, 4vw, 54px);
+      background: rgba(243, 240, 230, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    header a {
+      color: var(--forest);
+      font-size: 12px;
+      text-decoration: none;
+    }
+    header strong { font-family: var(--display); font-size: 16px; font-weight: 400; }
+    main { max-width: 1180px; margin: 0 auto; padding: 70px clamp(18px, 4vw, 42px) 100px; }
+    .kicker { margin: 0 0 12px; color: var(--coral); font-family: var(--mono); font-size: 9px; letter-spacing: .14em; }
+    h1 { max-width: 720px; margin: 0; font-family: var(--display); font-size: clamp(42px, 6vw, 68px); font-weight: 400; letter-spacing: -.04em; line-height: 1.05; }
+    .lead { max-width: 650px; margin: 20px 0 50px; color: var(--muted); font-size: 13px; }
+    section { display: grid; grid-template-columns: 210px 1fr; gap: 36px; padding: 30px 0; border-top: 1px solid var(--line); }
+    section h2 { margin: 0; font-family: var(--display); font-size: 23px; font-weight: 400; }
+    section .hint { margin: 5px 0 0; color: var(--muted); font-size: 10px; }
+    .demos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .demo-card { padding: 16px 18px; color: var(--ink); background: var(--white); border: 1px solid var(--line); text-decoration: none; transition: transform .18s, border-color .18s; }
+    .demo-card:hover { border-color: var(--forest); transform: translateY(-2px); }
+    .demo-card strong { display: block; margin-bottom: 4px; font-size: 12px; }
+    .demo-card span { color: var(--muted); font-size: 10px; }
+    .demo-card em { display: block; margin-top: 10px; color: var(--coral); font-family: var(--mono); font-size: 8px; font-style: normal; }
+    footer { padding: 30px; color: var(--muted); text-align: center; font-size: 10px; }
+    @media (max-width: 760px) {
+      main { padding-top: 46px; }
+      section { grid-template-columns: 1fr; gap: 16px; }
+      .demos { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="../">← 返回课程门户</a>
+    <strong>补充演示</strong>
+  </header>
+  <main>
+    <p class="kicker">LEGACY DEMOS / 扩展实验</p>
+    <h1>更多可以拆开看的例子</h1>
+    <p class="lead">这些页面来自课程早期的实验集合，适合在学完对应章节后继续探索。所有 D3 依赖已本地化，但仍建议通过本地服务器打开。</p>
+
+    <section>
+      <div><h2>第 1 章 · 数据</h2><p class="hint">表格、字段与聚合</p></div>
+      <div class="demos">
+        <a class="demo-card" href="tableshow.html" target="_blank"><strong>新生数据表</strong><span>d3.csv → 可读表格</span><em>OPEN DEMO →</em></a>
+        <a class="demo-card" href="newstudent.html" target="_blank"><strong>年龄分布</strong><span>d3.rollup + d3.arc 饼图</span><em>OPEN DEMO →</em></a>
+      </div>
+    </section>
+
+    <section>
+      <div><h2>第 2 章 · 可视化流程</h2><p class="hint">层级结构与联动</p></div>
+      <div class="demos">
+        <a class="demo-card" href="treelist.html" target="_blank"><strong>可折叠树形列表</strong><span>d3-hierarchy + DOM 事件</span><em>OPEN DEMO →</em></a>
+        <a class="demo-card" href="nssystem.html" target="_blank"><strong>新生数据管理系统</strong><span>树、表格、搜索联动</span><em>OPEN DEMO →</em></a>
+      </div>
+    </section>
+
+    <section>
+      <div><h2>第 3 章 · 色彩</h2><p class="hint">颜色编码对比</p></div>
+      <div class="demos">
+        <a class="demo-card" href="sex_compare.html" target="_blank"><strong>性别数据对比</strong><span>双系列条形图与颜色编码</span><em>OPEN DEMO →</em></a>
+      </div>
+    </section>
+
+    <section>
+      <div><h2>第 4 章 · 低维数据</h2><p class="hint">回归、colormap 与等值线</p></div>
+      <div class="demos">
+        <a class="demo-card" href="crime1985.html" target="_blank"><strong>1985 犯罪数据</strong><span>性别差异与回归散点</span><em>OPEN DEMO →</em></a>
+        <a class="demo-card" href="regression.html" target="_blank"><strong>线性回归最小示例</strong><span>d3-regression 基础用法</span><em>OPEN DEMO →</em></a>
+        <a class="demo-card" href="colormap.html" target="_blank"><strong>Terrain Colormap</strong><span>Viridis 热力图</span><em>OPEN DEMO →</em></a>
+        <a class="demo-card" href="mark.html" target="_blank"><strong>标记法</strong><span>按数值大小画方块</span><em>OPEN DEMO →</em></a>
+        <a class="demo-card" href="contour.html" target="_blank"><strong>Marching Squares</strong><span>移动四边形等值线追踪</span><em>OPEN DEMO →</em></a>
+        <a class="demo-card" href="contourd3.html" target="_blank"><strong>D3 Contour</strong><span>d3-contour 内置实现</span><em>OPEN DEMO →</em></a>
+      </div>
+    </section>
+
+    <section>
+      <div><h2>第 5 章 · 时序数据</h2><p class="hint">日历与螺旋</p></div>
+      <div class="demos">
+        <a class="demo-card" href="calendar.html" target="_blank"><strong>螺旋时间轴</strong><span>2008 日历基础版</span><em>OPEN DEMO →</em></a>
+        <a class="demo-card" href="calendar1.html" target="_blank"><strong>螺旋时间轴 · 变体 1</strong><span>圆环与标签调整</span><em>OPEN DEMO →</em></a>
+        <a class="demo-card" href="calendar3.html" target="_blank"><strong>螺旋时间轴 · 变体 3</strong><span>另一种周期布局</span><em>OPEN DEMO →</em></a>
+      </div>
+    </section>
+  </main>
+  <footer>《可视化导论》补充演示 · 无视频 · 本地运行</footer>
+</body>
+</html>
